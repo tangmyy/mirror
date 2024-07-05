@@ -4,8 +4,7 @@
         <el-row>
             <el-button type="success" icon="el-icon-check" circle @click="add"></el-button>
             <el-button type="success" icon="el-icon-check" circle @click="abb"></el-button>
-            <el-button type="success" icon="el-icon-check" circle @click="print"></el-button>
-
+            <!-- <el-button type="success" icon="el-icon-check" circle @click="adddd"></el-button> -->
         </el-row>
         <ul  class="animate__heartBeat">
             <li v-for="todo in doneTodos" :key="todo.id">{{ todo.text }}</li>
@@ -18,9 +17,9 @@
 
 <script>
 import { mapState,mapGetters,mapMutations } from 'vuex';
+
 export default{
     name: 'HelloVueX',
-    
     computed:{
         ...mapState([
             'count','todos'
@@ -31,16 +30,16 @@ export default{
     },
 
     methods:{
-        // add(){this.$store.commit("add", 5)},
-        // abb(){this.$store.commit("abb", 5)},
-        ...mapMutations([
-            'add', // 将 `this.add()` 映射为 `this.$store.commit('add')`
-            
-            // `mapMutations` 也支持载荷：
-            'abb' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
-        ]),
+        add(){this.$store.commit("add", 5)},
+        abb(){this.$store.commit("abb", 5)},
+        // ...mapMutations([
+        //     'add', // 将 `this.add()` 映射为 `this.$store.commit('add')`
+        //     // `mapMutations` 也支持载荷：
+        //     'abb', // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+        // ]),
         // ...mapMutations({
-        //         adddd: 'add' // 将 `this.add()` 映射为 `this.$store.commit('increment')`
+        //         adddd: 'add', // 将 `this.add()` 映射为 `this.$store.commit('increment')`
+        //         abbbb: 'abb',
         // })
     }
     

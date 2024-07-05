@@ -16,6 +16,8 @@
   
   <script>
     export default {
+      name: 'Body',
+
       data: () => ({
         show3: false
       })

@@ -23,6 +23,71 @@
     </div>
   </template>
   
+
+  <script>
+  export default {
+    data() {
+      return {
+        form: {
+          username: '',
+          password: ''
+        },
+        rules: {
+          username: [
+            { required: true, message: '请输入用户名', trigger: 'blur' }
+          ],
+          password: [
+            { required: true, message: '请输入密码', trigger: 'blur' }
+          ]
+        }
+      };
+    },
+    methods: {
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            // 登录逻辑 // 直接打印formData对象
+            console.log('登录成功!', this.form);    
+            // 弹窗提示       
+            alert('登录成功!');
+            // 发送数据到后端
+            this.$http.post('/users/login',  this.form, {  
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+            .then(response => {
+              console.log(response.data);
+              alert('登录成功!');
+              // 返回主页
+              setTimeout(() => {
+                this.$router.push({name: 'Body'})
+              }, 3000);
+            })
+            .catch(error => {
+              console.error(error);
+              alert('登录失败，请检查用户名和密码');
+            });
+          } else {
+            console.log('表单验证失败!');
+            alert('表单验证失败!');
+            // 返回登录页
+            setTimeout(() => {
+              this.$router.push({name: 'Login'})
+            },3000)
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      }
+    }
+  };
+  </script>
+  
+
+<!--   
 <script>
   export default {
     data() {
@@ -56,6 +121,9 @@
             });
             alert('登录成功!');
             await this.checkStatus();
+            setTimeout(() => {
+              this.$router.push({name: 'Body'})
+            },3000)
           }catch (error) {
             console.error('登录请求失败:', error);
             alert('登录失败!');
@@ -85,14 +153,26 @@
     }
   }
   </script>
-  
+   -->
+
+
+
+
+
+
+
+
+
+
+
+
 
   <style>
   .register-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 50vh;
     background-color: #f5f5f5;
   }
   

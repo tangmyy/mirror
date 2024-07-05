@@ -1,5 +1,6 @@
-import VueRouter from "vue-router";
 import Vue from "vue";
+import VueRouter from "vue-router";
+
 
 import Body from '../components/Body.vue'
 import Login from '../components/Login.vue'
@@ -13,18 +14,18 @@ import TestXXX from '../components/TestXXX.vue'
 
 import UpFile from '../components/UpFile.vue'
 
-
-
-
-
-
 // 将 VueRouter 设置为 Vue 的插件
 Vue.use(VueRouter)
 
+
+
+
 // 创建路由对象
 const router = new VueRouter({
-    // 指定hash属性与组件的对应关系
+    // mode: 'history',             // 模式切换
+    base: process.env.BASE_URL,     // 基础地址
     routes:[
+        //path 地址 name 替代名 redirect 组件
         { path:'/', redirect:"/App" },
         { path:'/Body', component: Body },
         { path:'/Login', component: Login },
@@ -40,7 +41,6 @@ const router = new VueRouter({
             
         },
         { path:'/UpFile', component: UpFile },
-
     ]
 
 })
