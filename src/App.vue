@@ -2,13 +2,14 @@
   <div id="app">
 
       <img alt="Vue logo" src="./assets/logo.png">
+      <HelloVueX></HelloVueX>
       <div class="nav-links">
-        <router-link class="nav-link" to="/Boby">首页</router-link>
+        <router-link class="nav-link" to="/Body">首页</router-link>
         <router-link class="nav-link" to="/Login">登录页面</router-link>
         <router-link class="nav-link" to="/Register">注册页面</router-link>
         <router-link class="nav-link" to="/Table">数据展示页面</router-link>
         <router-link class="nav-link" to="/Test">测试新功能展示页面</router-link>
-        <router-link class="nav-link" to="/ZhengFang">展示页面</router-link>
+        <router-link class="nav-link" to="/UpFile">展示页面</router-link>
       </div>
 
       <router-view></router-view>    <!-- 声明路由占位标签 -->
@@ -17,22 +18,20 @@
 
 <script>
 import HelloVueX from './components/HelloVueX.vue';
+// import { Mock } from '../mock/mock';
 
 
 export default {
   name: 'App',
+  // 生命周期钩子
+  mounted:function(){
+    console.log("cnm")
+  },
+
   // 组件注册
   components: {
     HelloVueX,
   },
-  // 组件状态
-  data:function (){
-    return{
-    }
-  },
-  // 组件方法
-  methods:{
-  }
 }
 </script>
 

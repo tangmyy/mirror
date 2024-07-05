@@ -20,15 +20,16 @@ const store = new Vuex.Store({      // 注意此处大写 new Vuex.Store
         }
     },
     mutations: {
-        add (state) {
+        add (state, n) {
             // 状态传进来加
-            state.count++
+            state.count += n
         },
-        abb (state) {
+        abb (state, n) {
             // 状态传进来减
-            state.count--
+            state.count -= n
         },
     },
 })
 
-export default store
+
+

@@ -17,7 +17,7 @@
 
 
 <script>
-import { mapState,mapGetters,mapActions } from 'vuex';
+import { mapState,mapGetters,mapMutations } from 'vuex';
 export default{
     name: 'HelloVueX',
     
@@ -31,8 +31,17 @@ export default{
     },
 
     methods:{
-        add(){this.$store.commit("add")},
-        abb(){this.$store.commit("abb")},
+        // add(){this.$store.commit("add", 5)},
+        // abb(){this.$store.commit("abb", 5)},
+        ...mapMutations([
+            'add', // 将 `this.add()` 映射为 `this.$store.commit('add')`
+            
+            // `mapMutations` 也支持载荷：
+            'abb' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+        ]),
+        // ...mapMutations({
+        //         adddd: 'add' // 将 `this.add()` 映射为 `this.$store.commit('increment')`
+        // })
     }
     
 }

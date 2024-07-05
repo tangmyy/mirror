@@ -23,8 +23,7 @@
     </div>
   </template>
   
-  <script>
-  import axios from 'axios';
+<script>
   export default {
     data() {
       return {
@@ -39,29 +38,46 @@
           password: [
             { required: true, message: '请输入密码', trigger: 'blur' }
           ],
-        }
-      }
+        },
+        message: '', // 存储状态信息
+      };
     },
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+      async submitForm(formName) {
+        this.$refs[formName].validate(async (valid) => {
           if (valid) {
+          try {
             console.log(this.form); // 直接打印formData对象
             // 发送数据到后端
             this.$http.post('/users/login',  this.form, {
               headers: {
                 'Content-Type': 'application/json'
               }
-            })
-            .then(response => {
-              // 处理成功响应
-              alert('登录成功!');
-            })
-          } else {
-            alert('登录失败!！');
-            return false;
+            });
+            alert('登录成功!');
+            await this.checkStatus();
+          }catch (error) {
+            console.error('登录请求失败:', error);
+            alert('登录失败!');
           }
-        });
+        } else {
+          alert('登录失败!');
+          return false;
+        }
+      });
+    },
+      async checkStatus() {
+        try {
+          const response = this.$http.get('/users/status');
+          if (response.status === 200) {
+            this.message = response.data;
+          } else {
+            this.message = '获取用户状态失败';
+          }
+        } catch (error) {
+          console.error('获取用户状态请求失败:', error);
+          this.message = '获取用户状态请求失败，请稍后重试';
+        }
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();

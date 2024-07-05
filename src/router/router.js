@@ -1,7 +1,7 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
 
-import Boby from '../components/Boby.vue'
+import Body from '../components/Body.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import Table from '../components/Table.vue'
@@ -11,7 +11,7 @@ import TestOne from '../components/TestOne.vue'
 import TestTwo from '../components/TestTwo.vue'
 import TestXXX from '../components/TestXXX.vue'
 
-// import ZhengFang from '../components/ZhengFang.vue'
+import UpFile from '../components/UpFile.vue'
 
 
 
@@ -26,7 +26,7 @@ const router = new VueRouter({
     // 指定hash属性与组件的对应关系
     routes:[
         { path:'/', redirect:"/App" },
-        { path:'/Boby', component: Boby },
+        { path:'/Body', component: Body },
         { path:'/Login', component: Login },
         { path:'/Register', component: Register },
         { path:'/Table', component: Table },
@@ -39,7 +39,7 @@ const router = new VueRouter({
             ] 
             
         },
-        // { path:'/ZhengFang', component: ZhengFang },
+        { path:'/UpFile', component: UpFile },
 
     ]
 
