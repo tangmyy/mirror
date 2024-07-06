@@ -1,12 +1,7 @@
-<!-- <template>
-  <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
-    <el-table-column prop="username" label="名称" width="180"></el-table-column>
-    <el-table-column prop="password" label="密码" width="180"></el-table-column>
-    <el-table-column prop="email" label="邮箱"></el-table-column>
-  </el-table>
-</template> -->
 <template>
   <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
+
+
     <el-table-column prop="userid" label="名称" width="180"></el-table-column>
 
     <el-table-column prop="imageurl" label="tupain" width="180">
@@ -16,6 +11,7 @@
     </el-table-column>
 
     <el-table-column prop="email" label="邮箱"></el-table-column>
+
   </el-table>
 </template>
 

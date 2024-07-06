@@ -1,9 +1,10 @@
 <template>
-    <div id="countpx">
+    <div id="helloVueX">
+        <img alt="Vue logo" src="@/assets/logo.png">
         {{ count }}
         <el-row>
-            <el-button type="success" icon="el-icon-check" circle @click="add"></el-button>
             <el-button type="success" icon="el-icon-check" circle @click="abb"></el-button>
+            <el-button type="success" icon="el-icon-check" circle @click="add"></el-button>
             <!-- <el-button type="success" icon="el-icon-check" circle @click="adddd"></el-button> -->
         </el-row>
         <ul  class="animate__heartBeat">
@@ -16,6 +17,7 @@
 
 
 <script>
+
 import { mapState,mapGetters,mapMutations } from 'vuex';
 
 export default{
@@ -48,7 +50,7 @@ export default{
 </script>
 
 <style scoped>
-#countpx{
+#helloVueX{
     margin: 40px 0 0;
     color: #42b983;
     font-weight: bold; 

@@ -2,10 +2,10 @@
   <div id="test">
     <div class="nav-links">
       <!-- 子路由链接 -->
-      <router-link class="nav-link" to="/Test/1">测试页面x1</router-link>
-      <router-link class="nav-link" to="/Test/2">测试页面x2</router-link>
-      <router-link class="nav-link" to="/TestOne">测试页面1</router-link>
-      <router-link class="nav-link" to="/TestTwo">测试页面2</router-link>
+      <router-link class="nav-link" to="/Test/Test/1">测试页面x1</router-link>
+      <router-link class="nav-link" to="/Test/Test/2">测试页面x2</router-link>
+      <router-link class="nav-link" to="/Test/TestOne">测试页面1</router-link>
+      <router-link class="nav-link" to="/Test/TestTwo">测试页面2</router-link>
     </div>
     <router-view></router-view> <!-- 声明路由占位标签 -->
   </div>

@@ -15,6 +15,7 @@
     "animate.css": "^4.1.1",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "buefy": "^0.9.29",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.14",
     "font-awesome": "^4.7.0",
