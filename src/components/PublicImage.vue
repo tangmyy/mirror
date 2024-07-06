@@ -30,14 +30,6 @@ export default {
   },
 
   methods: {
-    tableRowClassName ({ row, rowIndex }) {
-      if (rowIndex === 1) {
-        return 'warning-row';
-      } else if (rowIndex === 3) {
-        return 'success-row';
-      }
-      return '';
-    },
 
     fetchData() {
       this.$http.get("/images/public")
@@ -61,8 +53,3 @@ export default {
 </script>
 
 
-
-
-<style>
-
-</style>

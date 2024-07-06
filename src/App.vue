@@ -42,7 +42,7 @@
           </b-navbar-item>
         </router-link>
 
-        <router-link class="new" to="/Test/Test">
+        <router-link class="new" to="/VueThree">
           <b-navbar-item>
             测试页面
           </b-navbar-item>
@@ -61,17 +61,18 @@
       <template #end>
         <b-navbar-item tag="div">
           <div class="buttons">
-            <a class="button is-light">
+            <a class="button is-light" v-if="!isLoggedIn">
               <router-link to="/Login">登录</router-link>
             </a>
 
-            <router-link to="/Register">
-            <a class="button is-primary">
-              <strong>
-                注册
-              </strong>
-            </a>
+            <router-link to="/Register" v-if="!isLoggedIn">
+              <a class="button is-primary">
+                <strong>注册</strong>
+              </a>
             </router-link>
+            <a class="button is-light" v-if="isLoggedIn" @click="logout">
+              注销
+            </a>
           </div>
         </b-navbar-item>
       </template>
@@ -118,11 +119,28 @@
 <script>
 // import { Mock } from '../mock/mock';
 import Home from './components/Home.vue';
+
+import { mapState, mapMutations } from 'vuex';
+
+
 export default {
   name: 'App',
-  components: {   // 组件注册
+  // 注册组件
+  components: {   
     Home,
   },
+  // 2. methods：定义组件的方法。
+  methods: {
+    ...mapMutations(['login']), // 其实可以写一起，用逗号隔开...
+    ...mapMutations(['logout']),
+  },
+  // 3. computed：定义计算属性(具有缓存性)
+  computed: {
+    ...mapState(['isLoggedIn'])
+  },
+
+
+
   data() {
     return {
       total: 200,     // 总记录数
@@ -141,6 +159,7 @@ export default {
       inputDebounce: '500'   // 页码输入的防抖时间
     }
   }
+
 }
 
 </script>

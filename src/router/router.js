@@ -7,6 +7,7 @@ import Register from '../components/Register.vue'
 import PublicImage from '../components/PublicImage.vue'
 import PrivateImage from '../components/PrivateImage.vue'
 import VueTwo from '../components/VueTwo.vue'
+import VueThree from '../components/VueThree.vue'
 
 
 import Test from '../components/Test/Test.vue'
@@ -60,6 +61,10 @@ const router = new VueRouter({
         { path:'/VueTwo', 
           name: 'VueTwo',
           component: VueTwo 
+        },
+        { path:'/VueThree', 
+          name: 'VueThree',
+          component: VueThree 
         },
 
 

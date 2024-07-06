@@ -25,6 +25,8 @@
   
 
 <script>
+import { mapState, mapMutations} from 'vuex';
+
 export default {
   data() {
     return {
@@ -43,7 +45,18 @@ export default {
     };
   },
 
+  // 3. computed：定义计算属性(具有缓存性)
+  computed: {
+    ...mapState(['isLoggedIn'])
+  },
+
+  // 记得不要重复定义...
+
+  // 2. methods：定义组件的方法。
   methods: {
+    ...mapMutations(['login']), // 其实可以写一起，用逗号隔开...
+    ...mapMutations(['logout']),
+
     submitForm(formName) {
     // 验证表单
     this.$refs[formName].validate((valid) => {
@@ -60,12 +73,14 @@ export default {
           // 登录成功处理
           alert('登录成功!');
           setTimeout(() => {
+            this.login();
             console.log('跳转到 Home 页面');
             this.$router.push({ name: 'Home' });
           }, 500);
-
+          
           // 在控制台输出成功信息
           console.log('登录响应:', response.data);
+
           
           // 获取并输出所有 cookies
           const cookies = document.cookie;
@@ -99,9 +114,11 @@ export default {
     });
   },
 
+
     
     // 重置以清空表单内容
     resetForm(formName) {
+      // this.login(); // 调用 Vuex 的 login mutation
       this.$refs[formName].resetFields();
     }
   }
