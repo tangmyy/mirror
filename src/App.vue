@@ -25,13 +25,13 @@
 
         <router-link class="new" to="/Table">
           <b-navbar-item>
-            数据展示
+            公共相册
           </b-navbar-item>
         </router-link>
 
         <router-link class="new" to="/Test/Test">
           <b-navbar-item>
-            测试页面
+            个人空间
           </b-navbar-item>
         </router-link>
 

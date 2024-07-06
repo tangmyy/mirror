@@ -1,64 +1,68 @@
 <template>
-    <div>
-      <h1>登录</h1>
-      <form @submit.prevent="login">
-        <div>
-          <label for="username">用户名:</label>
-          <input type="text" v-model="username" id="username" required />
-        </div>
-        <div>
-          <label for="password">密码:</label>
-          <input type="password" v-model="password" id="password" required />
-        </div>
-        <button type="submit">登录</button>
-      </form>
-      <div v-if="message">{{ message }}</div>
-    </div>
-  </template>
-  
-  <script>
-  import axios from 'axios';
-  
-  export default {
-    data() {
-      return {
-        username: '',
-        password: '',
-        message: ''
-      };
-    },
-    methods: {
-      async login() {
-        try {
-          const response = await axios.post('/api/users/login', {
-            username: this.username,
-            password: this.password
-          });
-          if (response.status === 200) {
-            this.message = response.data;
-            this.checkStatus();
-          } else {
-            this.message = '登录失败，请检查用户名和密码';
-          }
-        } catch (error) {
-          console.error('登录请求失败:', error);
-          this.message = '登录请求失败，请稍后重试';
-        }
-      },
-      async checkStatus() {
-        try {
-          const response = await axios.get('/api/users/status');
-          if (response.status === 200) {
-            this.message = response.data;
-            this.$router.push('/'); // 登录成功后重定向到主页或其他受保护的页面
-          } else {
-            this.message = '获取用户状态失败';
-          }
-        } catch (error) {
-          console.error('获取用户状态请求失败:', error);
-          this.message = '获取用户状态请求失败，请稍后重试';
-        }
+  <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
+
+
+    <el-table-column prop="userid" label="名称" width="180"></el-table-column>
+
+    <el-table-column prop="imageurl" label="tupain" width="180">
+      <template v-slot="scope">
+        <img :src="scope.row.imageurl" alt="image" style="width: 100px; height: auto;" />
+      </template>
+    </el-table-column>
+
+    <el-table-column prop="email" label="邮箱"></el-table-column>
+
+  </el-table>
+</template>
+
+<script>
+import axios from 'axios';
+export default {
+  data() {
+    return {
+      tableData: []
+    };
+  },
+  methods: {
+    tableRowClassName ({ row, rowIndex }) {
+      if (rowIndex === 1) {
+        return 'warning-row';
+      } else if (rowIndex === 3) {
+        return 'success-row';
       }
-    }
-  };
-  </script>
+      return '';
+    },
+
+    async fetchData() {
+      console.log("fetchData");
+      try {
+        const response = await this.$http.get('/images/user', {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          //通过设置 withCredentials 可以确保在跨域请求中带上当前域名下的 Cookies。
+          withCredentials: true, // 确保请求包含凭证
+        });
+        //处理响应数据
+        this.tableData = response.data.map(images => {
+          return {
+            ...images, // 使用对象展开运算符保留图像对象的所有属性
+            imageurl: "http://localhost:8088" + images.url
+          };
+        });
+      } catch (error) {
+        console.error('网络异常，上传失败', error);
+        alert('网络异常，上传失败');
+      }
+    },
+  },
+
+  created () {
+    console.log("created"),
+    this.fetchData();
+  }
+}
+
+
+
+</script>
