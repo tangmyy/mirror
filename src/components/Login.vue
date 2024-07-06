@@ -52,7 +52,9 @@ export default {
         this.$http.post('/users/login', this.form, {
           headers: {
             'Content-Type': 'application/json'
-          }
+          },
+          withCredentials: true // 确保请求包含凭证
+
         })
         .then(response => {
           // 登录成功处理
@@ -61,6 +63,21 @@ export default {
             console.log('跳转到 HelloVueX 页面');
             this.$router.push({ name: 'HelloVueX' });
           }, 500);
+
+          // 在控制台输出成功信息
+          console.log('登录响应:', response.data);
+          
+          // 获取并输出所有 cookies
+          const cookies = document.cookie;
+          console.log('Cookies:', cookies);
+          
+          // 输出 JSESSIONID
+          const jsessionId = cookies
+            .split('; ')
+            .find(row => row.startsWith('JSESSIONID='))
+            ?.split('=')[1];
+          console.log('JSESSIONID:', jsessionId);
+
         })
         .catch(error => {
           // 登录失败
