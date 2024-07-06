@@ -1,15 +1,28 @@
 <template>
   <div id="test">
     <div class="nav-links">
-      <!-- 子路由链接 -->
-      <router-link class="nav-link" to="/Test/Test/1">测试页面x1</router-link>
+      <!-- <router-link class="nav-link" to="/Test/Test/1">测试页面x1</router-link>
       <router-link class="nav-link" to="/Test/Test/2">测试页面x2</router-link>
       <router-link class="nav-link" to="/Test/TestOne">测试页面1</router-link>
-      <router-link class="nav-link" to="/Test/TestTwo">测试页面2</router-link>
+      <router-link class="nav-link" to="/Test/TestTwo">测试页面2</router-link> -->
+      <nuw></nuw>
     </div>
-    <router-view></router-view> <!-- 声明路由占位标签 -->
+    <router-view></router-view>
   </div>
 </template>
+
+
+<script>
+
+import nuw from '@/components/notepad/nuw.vue';
+export default {
+  name: 'Test',
+  components: {   // 组件注册
+    nuw
+  },
+}
+</script>
+
 
 <style>
 #test {

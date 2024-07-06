@@ -35,7 +35,6 @@ export default {
     fetchData() {
       console.log("fetchData"),
       this.$http.get("/images")
-      axios.get("/images")
       .then((response) => {
         //假设响应数据是一个图像对象数组
         this.tableData = response.data.map(images => {
