@@ -6,6 +6,7 @@
       <router-link class="nav-link" to="/Test/TestOne">测试页面1</router-link>
       <router-link class="nav-link" to="/Test/TestTwo">测试页面2</router-link> -->
       <nuw></nuw>
+      <txt></txt>
     </div>
     <router-view></router-view>
   </div>
@@ -15,10 +16,14 @@
 <script>
 
 import nuw from '@/components/notepad/nuw.vue';
+import txt from '@/components/notepad/txt.vue';
+
 export default {
   name: 'Test',
   components: {   // 组件注册
-    nuw
+    nuw,
+    txt,
+
   },
 }
 </script>

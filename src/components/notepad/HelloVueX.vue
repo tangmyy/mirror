@@ -1,6 +1,6 @@
 <template>
     <div id="helloVueX">
-        <img alt="Vue logo" src="@/assets/logo.png">
+        <img alt="Vue logo" src="@/assets/MirrorLogo.png">
         {{ count }}
         <el-row>
             <el-button type="success" icon="el-icon-check" circle @click="abb"></el-button>

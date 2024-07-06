@@ -3,35 +3,48 @@
     <!-- 首页导航栏 -->
     <b-navbar>
       <template #brand>
-        <b-navbar-item tag="router-link" :to="{ path: '/' }">
+        <!-- src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png" -->
+        <b-navbar-item tag="router-link" :to="{ path: '/Login' }">
           <img
-          src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
+          src="@/assets/MirrorLogo.png"
           alt="图片被臭冥冥吃了"
           >
         </b-navbar-item>
       </template>
       <template #start>
-        <router-link class="new" to="/HelloVueX">
+        <router-link class="new" to="/Home">
           <b-navbar-item>
             首页
           </b-navbar-item>
         </router-link>
-        
+
+        <router-link class="new" to="/PublicImage">
+          <b-navbar-item>
+            公共相册
+          </b-navbar-item>
+        </router-link>
+
+        <router-link class="new" to="/PrivateImage">
+          <b-navbar-item>
+            个人空间
+          </b-navbar-item>
+        </router-link>
+
         <router-link class="new" to="/UpFile">
           <b-navbar-item>
             上传图片
           </b-navbar-item>
         </router-link>
 
-        <router-link class="new" to="/Table">
+        <router-link class="new" to="/VueTwo">
           <b-navbar-item>
-            公共相册
+            预加页面
           </b-navbar-item>
         </router-link>
 
         <router-link class="new" to="/Test/Test">
           <b-navbar-item>
-            个人空间
+            测试页面
           </b-navbar-item>
         </router-link>
 
@@ -62,7 +75,9 @@
           </div>
         </b-navbar-item>
       </template>
+
     </b-navbar>  
+
     <!-- 中间内容 -->
     <template>
       <div id="app">
@@ -102,11 +117,11 @@
 
 <script>
 // import { Mock } from '../mock/mock';
-import HelloVueX from './components/HelloVueX.vue';
+import Home from './components/Home.vue';
 export default {
   name: 'App',
   components: {   // 组件注册
-    HelloVueX
+    Home,
   },
   data() {
     return {
@@ -152,30 +167,4 @@ export default {
   align-items: center; /* 垂直居中 */
   justify-content: center; /* 水平居中，可选 */
 }
-
-
-/* <router-link class="nav-link" to="/UpFile">展示页面</router-link> */
-/* .nav-links {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px; /* 设置顶部外边距 */
-  /* white-space: nowrap; /* 防止换行 */
-  /* background: #ffffff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-/* } */
-/* 
-.nav-link {
-  margin: 0 15px; /* 设置左右边距 */
-  /* color: #5a5a5a; /* 链接颜色 */
-  /* text-decoration: none; /* 移除下划线 */
-  /* font-weight: bold;
-  transition: color 0.3s ease;
-} */ 
-
-/* .nav-link:hover {
-  color: #000000; /* 悬停时的链接颜色 */
-  /* text-decoration: underline;
-} */ 
 </style> 
