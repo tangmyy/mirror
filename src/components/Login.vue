@@ -60,8 +60,8 @@ export default {
           // 登录成功处理
           alert('登录成功!');
           setTimeout(() => {
-            console.log('跳转到 HelloVueX 页面');
-            this.$router.push({ name: 'HelloVueX' });
+            console.log('跳转到 Home 页面');
+            this.$router.push({ name: 'Home' });
           }, 500);
 
           // 在控制台输出成功信息
