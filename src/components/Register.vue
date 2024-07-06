@@ -31,68 +31,77 @@
     </div>
   </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        form: {
-          username: '',
-          email: '',
-          password: '',
-          confirmPassword: ''
-        },
-        rules: {
-          username: [
-            { required: true, message: '请输入用户名', trigger: 'blur' }
-          ],
-          email: [
-            { required: true, message: '请输入邮箱', trigger: 'blur' },
-            { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
-          ],
-          password: [
-            { required: true, message: '请输入密码', trigger: 'blur' }
-          ],
-          confirmPassword: [
-            { required: true, message: '请确认密码', trigger: 'blur' },
-            { validator: (rule, value, callback) => {
-              if (value !== this.form.password) {
-                callback(new Error('两次输入密码不一致'));
-              } else {
-                callback();
-              }
-            }, trigger: 'blur' }
-          ]
-        }
-      }
-    },
-    methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            console.log(this.form); // 直接打印formData对象
-            // 发送数据到后端
-            this.$http.post('/users/register',  this.form, {
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            })
-            .then(response => {
-              // 处理成功响应
-              alert('注册成功!');
-            })
-          } else {
-            console.log('注册失败!！');
-            alert('注册失败!！');
-            return false;
-          }
-        });
+<script>
+export default {
+  data() {
+    return {
+      form: {
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
       },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' }
+        ],
+        email: [
+          { required: true, message: '请输入邮箱', trigger: 'blur' },
+          { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' }
+        ],
+        confirmPassword: [
+          { required: true, message: '请确认密码', trigger: 'blur' },
+          { validator: (rule, value, callback) => {
+            if (value !== this.form.password) {
+              callback(new Error('两次输入密码不一致'));
+            } else {
+              callback();
+            }
+          }, trigger: 'blur' }
+        ]
       }
     }
+  },
+  methods: {
+    submitForm(formName) {
+      // 验证表单
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          // 如果表单验证通过，发送请求
+          this.$http.post('/users/register', this.form, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(response => {
+            // 注册成功处理
+            alert('注册成功!');
+            setTimeout(() => {
+              console.log('跳转到登录页面');
+              this.$router.push({ name: 'Login' });
+            }, 500);
+          })
+          .catch(error => {
+            // 注册失败
+            console.error(error);
+            alert('注册失败，请重试');
+            // 注册失败不跳转
+          });
+        } else {
+            // 表单验证失败，提示用户输入有效数据
+            alert('请填写有效的注册信息');
+          }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
   }
-  </script>
+}
+</script>
   
 
   <style>
