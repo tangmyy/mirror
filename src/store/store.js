@@ -8,24 +8,33 @@ const store = new Vuex.Store({
 
     // this.store.state.'xxx' 状态
     state: {
-        count: 0,
-        todos: [
-            {id: 1, text: '前端', done: true},
-            {id: 2, text: '吃dai', done: true},
-        ]
+      isLoggedIn: false,
+
+      count: 0,
+      todos: [
+          {id: 1, text: '前端', done: true},
+          {id: 2, text: '吃dai', done: true},
+      ],
+        
+
     },
 
     // 获取状态(state)的派生状态
     getters: {
         count: state => state.count,
         doneTodos: state => {
-            return state.todos.filter(todo => todo.done) 
-            // filter创建一个新数组，其包含通过所提供函数实现的测试的所有元素,它不会改变原数组
+            return state.todos.filter(todo => todo.done)  // filter创建一个新数组，其包含通过所提供函数实现的测试的所有元素,它不会改变原数组
         }
     },
 
     // this.$store.commit('xxx') 提交突变
     mutations: {
+      login(state) {
+        state.isLoggedIn = true;
+      },
+      logout(state) {
+        state.isLoggedIn = false;
+      },
         increment(state, num) {
             state.count += num;
             console.log('触发mutations，count的值为', state.count);
