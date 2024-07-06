@@ -25,21 +25,52 @@ const router = new VueRouter({
     base: process.env.BASE_URL,     // 基础地址
     routes:[
         //path 地址 name 替代名 redirect 组件
-        { path:'/', redirect:"/App" },
-        { path:'/HelloVueX', component: HelloVueX },
-        { path:'/Login', component: Login },
-        { path:'/Register', component: Register },
-        { path:'/Table', component: Table },
-        { path:'/Test/Test', component: Test,
+        { 
+          path:'/', 
+          name: 'Home',
+          redirect:"/App" 
+        },
+        { 
+          path:'/HelloVueX', 
+          name: 'HelloVueX',
+          component: HelloVueX 
+        },
+        { path:'/Login', 
+          name: 'Login',
+          component: Login 
+        },
+        { path:'/Register', 
+          name: 'Register',
+          component: Register 
+        },
+        { path:'/Table', 
+          name: 'Table',
+          component: Table 
+        },
+        { path:'/Test/Test', 
+          name: 'Test',
+          component: Test,
             children:[
-                { path:'/Test/TestOne', component: TestOne },
-                { path:'/Test/TestTwo', component: TestTwo },
-                // { path:':id', component: TestXXX}, // 第一种方式：内置获取 :id
-                { path:':id', component: TestXXX, props: true},     // 第二种方式， props传递
+                { 
+                  path:'/Test/TestOne', 
+                  name: 'TestOne',
+                  component: TestOne 
+                },
+                { path:'/Test/TestTwo', 
+                  name: 'TestTwo',
+                  component: TestTwo 
+                },
+                { path:':id', 
+                  name: 'TestXXX',
+                  component: TestXXX, 
+                  props: true},     // 第二种方式， props传递
             ] 
             
         },
-        { path:'/UpFile', component: UpFile },
+        { path:'/UpFile', 
+          name: 'UpFile',
+          component: UpFile 
+        },
     ]
 
 })

@@ -93,12 +93,12 @@ export default {
 
 // export default{
 //   name: 'TestOne',
-//   created (){
-//     setTimeout(()=> {
-//       this.$router.push({ name:'TestTwo', query:{someData:'我是TestOne过来的'} })
-//     }, 3000)
-//     console.log(this.$route.query)
-//   }
+  // created (){
+  //   setTimeout(()=> {
+  //     this.$router.push({ name:'TestTwo', query:{someData:'我是TestOne过来的'} })
+  //   }, 3000)
+  //   console.log(this.$route.query)
+  // }
 // }
 // $router 路由动作
 
