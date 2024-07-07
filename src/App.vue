@@ -48,14 +48,29 @@
           </b-navbar-item>
         </router-link>
 
-        <!-- <b-navbar-dropdown label="其他">
-          <b-navbar-item href="#">
-            数据展示
-          </b-navbar-item>
-          <b-navbar-item href="#">
-            测试
-          </b-navbar-item>
-        </b-navbar-dropdown> -->
+        <b-navbar-dropdown label="其他">
+          <router-link class="new" to="/VueFour">
+            <b-navbar-item to="/VueFour">
+              测试页面4
+            </b-navbar-item>
+          </router-link>
+          <router-link class="new" to="/VueFive">
+            <b-navbar-item to="/VueFour">
+              测试页面5
+            </b-navbar-item>
+          </router-link>
+          <router-link class="new" to="/VueSix">
+            <b-navbar-item to="/VueFour">
+              测试页面6
+            </b-navbar-item>
+          </router-link>
+          <router-link class="new" to="/VueSeven">
+            <b-navbar-item to="/VueFour">
+              测试页面7
+            </b-navbar-item>
+          </router-link>
+        </b-navbar-dropdown>
+    
       </template>
       
       <template #end>
@@ -118,9 +133,9 @@
 
 <script>
 // import { Mock } from '../mock/mock';
+import { mapState, mapMutations } from 'vuex';
 import Home from './components/Home.vue';
 
-import { mapState, mapMutations } from 'vuex';
 
 
 export default {

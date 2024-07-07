@@ -6,8 +6,13 @@ import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import PublicImage from '../components/PublicImage.vue'
 import PrivateImage from '../components/PrivateImage.vue'
+
 import VueTwo from '../components/VueTwo.vue'
 import VueThree from '../components/VueThree.vue'
+import VueFour from '../components/VueFour.vue'
+import VueFive from '../components/VueFive.vue'
+import VueSix from '../components/VueSix.vue'
+import VueSeven from '../components/VueSeven.vue'
 
 
 import Test from '../components/Test/Test.vue'
@@ -17,9 +22,7 @@ import TestXXX from '../components/Test/TestXXX.vue'
 
 import UpFile from '../components/UpFile.vue'
 
-// 将 VueRouter 设置为 Vue 的插件
-Vue.use(VueRouter)
-
+Vue.use(VueRouter)    // 将 VueRouter 设置为 Vue 的插件
 
 
 // 创建路由对象
@@ -66,7 +69,22 @@ const router = new VueRouter({
           name: 'VueThree',
           component: VueThree 
         },
-
+        { path:'/VueFour', 
+          name: 'VueFour',
+          component: VueFour 
+        },
+        { path:'/VueFive', 
+          name: 'VueFive',
+          component: VueFive 
+        },
+        { path:'/VueSix', 
+          name: 'VueSix',
+          component: VueSix 
+        },
+        { path:'/VueSeven', 
+          name: 'VueSeven',
+          component: VueSeven 
+        },
 
 
         { path:'/Test/Test', 
