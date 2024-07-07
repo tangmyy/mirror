@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
+  <el-table :data="tableData" style="width: 100%">
 
 
     <el-table-column prop="userid" label="作者ID" width="180"></el-table-column>
@@ -7,29 +7,47 @@
     <el-table-column prop="imageurl" label="图片" width="180">
       <template v-slot="scope">
         <img :src="scope.row.imageurl" alt="image" style="width: 100px; height: auto;" />
-        <!-- <p>{{ index }}</p> -->
       </template>
     </el-table-column>
 
     <el-table-column prop="created" label="上传时间"></el-table-column>
+    
+    <el-table-column label="图片路径"> </el-table-column>        
+
 
   </el-table>
 </template>
 
 <script>
+  import { mapState,mapGetters,mapMutations } from 'vuex';
+
 // 导入
 export default {
   data() {
     return {
-      tableData: [],
-      // index: scope.row.imageurl,
+      tableData: [],      
     };
   },
+
   created () {
     this.fetchData();
   },
 
+  computed:{
+    ...mapState([
+
+    ]),
+    ...mapGetters({                  
+      // ShuZu: 'doneTodos',
+      // ShuZuCount: 'doneTodosCount',
+    }),
+  },
+
   methods: {
+    ...mapMutations({
+      // adddd: 'add',
+      // abbbb: 'abb',
+    }),
 
     fetchData() {
       this.$http.get("/images/public")

@@ -13,7 +13,11 @@ import VueFour from '../components/VueFour.vue'
 import VueFive from '../components/VueFive.vue'
 import VueSix from '../components/VueSix.vue'
 import VueSeven from '../components/VueSeven.vue'
+import VueEight from '../components/VueEight.vue'
+import VueNine from '../components/VueNine.vue'
+import VueTen from '../components/VueTen.vue'
 
+import PuBu from '../components/PuBu.vue'
 
 import Test from '../components/Test/Test.vue'
 import TestOne from '../components/Test/TestOne.vue'
@@ -33,8 +37,8 @@ const router = new VueRouter({
         //path 地址 name 替代名 redirect 组件
         { 
           path:'/', 
-          name: 'App',
-          redirect:"/App" 
+          name: 'Home',
+          redirect:"/Home" 
         },
         { 
           path:'/Home', 
@@ -85,7 +89,22 @@ const router = new VueRouter({
           name: 'VueSeven',
           component: VueSeven 
         },
-
+        { path:'/VueEight', 
+          name: 'VueEight',
+          component: VueEight 
+        },
+        { path:'/VueNine', 
+          name: 'VueNine',
+          component: VueNine 
+        },
+        { path:'/VueTen', 
+          name: 'VueTen',
+          component: VueTen 
+        },
+        { path:'/PuBu', 
+          name: 'PuBu',
+          component: PuBu 
+        },
 
         { path:'/Test/Test', 
           name: 'Test',

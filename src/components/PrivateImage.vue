@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
+  <el-table :data="tableData" style="width: 100%">
 
 
     <el-table-column prop="userid" label="作者ID" width="180"></el-table-column>
