@@ -69,9 +69,24 @@
               移动端瀑布流
             </b-navbar-item>
           </router-link>
-          <router-link class="new" to="/MK">
+          <router-link class="new" to="/VueSeven">
             <b-navbar-item>
-              瀑布流实验
+              VueSeven
+            </b-navbar-item>
+          </router-link>
+          <router-link class="new" to="/VueEight">
+            <b-navbar-item>
+              VueEight
+            </b-navbar-item>
+          </router-link>
+          <router-link class="new" to="/VueNine">
+            <b-navbar-item>
+              VueNine
+            </b-navbar-item>
+          </router-link>
+          <router-link class="new" to="/VueTen">
+            <b-navbar-item>
+              VueTen
             </b-navbar-item>
           </router-link>
         </b-navbar-dropdown>

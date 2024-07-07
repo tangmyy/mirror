@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+// 为什么这里也要导入 main.js不是全局的吗？
+import axios from 'axios'
+axios.defaults.baseURL = "http://localhost:8088/api"
+Vue.prototype.$http = axios
 
 Vue.use(Vuex)
 
@@ -10,7 +14,11 @@ const store = new Vuex.Store({
     state: {
       UserID: '未登录',
       isLoggedIn: false,
-      // URL: 'http://localhost:8088',
+      HTTP: 'http://localhost:8088',
+      PublicImages: [],
+      PublicImageURL: [],
+      UserImageURL: [],
+
 
     },
 
@@ -23,6 +31,9 @@ const store = new Vuex.Store({
       logout(state) {
         state.isLoggedIn = false;
         state.UserID = '';
+      },
+      setPublicImages(state, images) {
+        state.PublicImages = images;
       },
 
     },
@@ -43,12 +54,17 @@ const store = new Vuex.Store({
 
     // 派发异步操作的逻辑(不做修改，修改只在mutations实现)
     actions: {
-      // delayincrement(store, num){
-      //   setTimeout(() => {
-      //     store.commit('increment', num);
-      //   }, 2000)
-      // }
+      fetchPublicImages({ commit }) {
+        // 不可以使用 this.$http.get("/images/public")
+        return axios.get("http://localhost:8088/api/images/public")
+        .then((response) => {
+          commit('setPublicImages', response.data);
+        }).catch((error) => {
+          console.error("Error fetching images:", error);
+        });
+      },
     },
+
 
     modules: {
       // 可分模块

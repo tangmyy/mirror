@@ -74,6 +74,36 @@ export default {
       console.log(newValue, oldValue)
     }
   }
+// store.state 来获取状态对象，
+// store.commit 方法触发状态
+// 路由的数据传递
+
+
+// export default{
+//   name: 'TestOne',
+  // created (){
+  //   setTimeout(()=> {
+  //     this.$router.push({ name:'TestTwo', query:{someData:'我是TestOne过来的'} })
+  //   }, 3000)
+  //   console.log(this.$route.query)
+  // }
+// }
+// $router 路由动作
+
+// export default{
+//   name: 'TestTwo',
+//   created (){
+//     console.log(this.$route.query)
+//   }
+// }
+// $route 路由数据
+
+// 全局守卫  // (目的地, 始发地, 是否继续)
+// router.beforeEach((to, from, next)=> {
+//   console.log("路由触发了")
+//   next()
+// })
+
   // 5. 中央仓库 store
 
   // 5.2 methods：定义组件的方法。
@@ -109,35 +139,6 @@ export default {
 // 9. mixins：使用混入来复用代码。
 // 10. provide 和 inject：依赖注入。
 
-// store.state 来获取状态对象，
-// store.commit 方法触发状态
-// 路由的数据传递
-
-
-// export default{
-//   name: 'TestOne',
-  // created (){
-  //   setTimeout(()=> {
-  //     this.$router.push({ name:'TestTwo', query:{someData:'我是TestOne过来的'} })
-  //   }, 3000)
-  //   console.log(this.$route.query)
-  // }
-// }
-// $router 路由动作
-
-// export default{
-//   name: 'TestTwo',
-//   created (){
-//     console.log(this.$route.query)
-//   }
-// }
-// $route 路由数据
-
-// 全局守卫  // (目的地, 始发地, 是否继续)
-// router.beforeEach((to, from, next)=> {
-//   console.log("路由触发了")
-//   next()
-// })
 
 }
 </script>
