@@ -6,6 +6,7 @@ import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import PublicImage from '../components/PublicImage.vue'
 import PrivateImage from '../components/PrivateImage.vue'
+import UpFile from '../components/UpFile.vue'
 
 import VueTwo from '../components/VueTwo.vue'
 import VueThree from '../components/VueThree.vue'
@@ -19,12 +20,11 @@ import VueTen from '../components/VueTen.vue'
 
 import PuBu from '../components/PuBu.vue'
 
-import Test from '../components/Test/Test.vue'
-import TestOne from '../components/Test/TestOne.vue'
-import TestTwo from '../components/Test/TestTwo.vue'
-import TestXXX from '../components/Test/TestXXX.vue'
+// import Test from '../components/Test/Test.vue'
+// import TestOne from '../components/Test/TestOne.vue'
+// import TestTwo from '../components/Test/TestTwo.vue'
+// import TestXXX from '../components/Test/TestXXX.vue'
 
-import UpFile from '../components/UpFile.vue'
 
 Vue.use(VueRouter)    // 将 VueRouter 设置为 Vue 的插件
 
@@ -37,7 +37,7 @@ const router = new VueRouter({
         //path 地址 name 替代名 redirect 组件
         { 
           path:'/', 
-          name: 'Home',
+          name: 'ZX',
           redirect:"/Home" 
         },
         { 
@@ -106,26 +106,26 @@ const router = new VueRouter({
           component: PuBu 
         },
 
-        { path:'/Test/Test', 
-          name: 'Test',
-          component: Test,
-            children:[
-                { 
-                  path:'/Test/TestOne', 
-                  name: 'TestOne',
-                  component: TestOne 
-                },
-                { path:'/Test/TestTwo', 
-                  name: 'TestTwo',
-                  component: TestTwo 
-                },
-                { path:':id', 
-                  name: 'TestXXX',
-                  component: TestXXX, 
-                  props: true},     // 第二种方式， props传递
-            ] 
+        // { path:'/Test/Test', 
+        //   name: 'Test',
+        //   component: Test,
+        //     children:[
+        //         { 
+        //           path:'/Test/TestOne', 
+        //           name: 'TestOne',
+        //           component: TestOne 
+        //         },
+        //         { path:'/Test/TestTwo', 
+        //           name: 'TestTwo',
+        //           component: TestTwo 
+        //         },
+        //         { path:':id', 
+        //           name: 'TestXXX',
+        //           component: TestXXX, 
+        //           props: true},     // 第二种方式， props传递
+        //     ] 
             
-        },
+        // },
 
     ]
 
