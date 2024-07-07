@@ -8,57 +8,48 @@ const store = new Vuex.Store({
 
     // this.store.state.'xxx' 状态
     state: {
-      UserID: '',
+      UserID: '未登录',
       isLoggedIn: false,
-
-      count: 0,
-      todos: [
-          {id: 1, text: '前端', done: true},
-          {id: 2, text: '吃dai', done: true},
-      ],
-        
+      // URL: 'http://localhost:8088',
 
     },
 
     // this.$store.commit('xxx') 提交突变
     mutations: {
-      login(state) {
+      login(state, username) {
         state.isLoggedIn = true;
+        state.UserID = username;
       },
       logout(state) {
         state.isLoggedIn = false;
+        state.UserID = '';
       },
-      add (state, num) {
-          // 状态传进来加
-          state.count += num;
-      },
-      abb (state, num) {
-          // 状态传进来减
-          state.count -= num;
-      },
+
     },
 
     // 获取状态(state)的派生状态(过滤/计数)   注意，getter 在通过属性访问时是作为 Vue 的响应式系统的一部分缓存其中的
     getters: {
-      count: state => state.count,
-      doneTodos: state => {
-        return state.todos.filter(todo => todo.done)  // filter创建一个新数组，其包含通过所提供函数实现的测试的所有元素,它不会改变原数组
-      },
-      doneTodosCount:(state, getters) =>{
-        return getters.doneTodos.length
-      }
+      // count: state => state.count,
+      // doneTodos: state => {
+      //   // filter创建一个新数组，其包含通过所提供函数实现的测试的所有元素,它不会改变原数组
+      //   return state.todos.filter(todo => todo.done)
+      // },
+      // doneTodosCount:(state, getters) =>{
+      //   return getters.doneTodos.length
+      // }
 
     },
 
 
-     // 派发异步操作的逻辑(不做修改，修改只在mutations实现)
+    // 派发异步操作的逻辑(不做修改，修改只在mutations实现)
     actions: {
-      delayincrement(store, num){
-        setTimeout(() => {
-        store.commit('increment', num);
-      }, 2000)
-      }
+      // delayincrement(store, num){
+      //   setTimeout(() => {
+      //     store.commit('increment', num);
+      //   }, 2000)
+      // }
     },
+
     modules: {
       // 可分模块
     }

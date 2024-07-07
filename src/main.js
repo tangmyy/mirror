@@ -21,6 +21,8 @@ import 'animate.css';
 import VueKinesis from 'vue-kinesis'
 Vue.use(VueKinesis);
 
+import { VueMasonryPlugin } from 'vue-masonry';
+Vue.use(VueMasonryPlugin);
 
 
 Vue.config.productionTip = false

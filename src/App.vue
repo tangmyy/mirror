@@ -50,23 +50,28 @@
 
         <b-navbar-dropdown label="其他">
           <router-link class="new" to="/VueFour">
-            <b-navbar-item to="/VueFour">
-              测试页面4
+            <b-navbar-item>
+              无限滚动
             </b-navbar-item>
           </router-link>
           <router-link class="new" to="/VueFive">
-            <b-navbar-item to="/VueFour">
-              测试页面5
+            <b-navbar-item>
+              加载中...
             </b-navbar-item>
           </router-link>
           <router-link class="new" to="/VueSix">
-            <b-navbar-item to="/VueFour">
-              测试页面6
+            <b-navbar-item>
+              幻灯片
             </b-navbar-item>
           </router-link>
-          <router-link class="new" to="/VueSeven">
-            <b-navbar-item to="/VueFour">
-              测试页面7
+          <router-link class="new" to="/PuBu">
+            <b-navbar-item>
+              移动端瀑布流
+            </b-navbar-item>
+          </router-link>
+          <router-link class="new" to="/MK">
+            <b-navbar-item>
+              瀑布流实验
             </b-navbar-item>
           </router-link>
         </b-navbar-dropdown>
@@ -85,9 +90,13 @@
                 <strong>注册</strong>
               </a>
             </router-link>
-            <a class="button is-light" v-if="isLoggedIn" @click="logout">
-              注销
-            </a>
+
+            <div v-if="isLoggedIn" class="user-section">
+              <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+              <el-button type="success" plain>{{ UserID }}：欢迎您！👏</el-button>
+              <el-button type="warning" @click="APPlogout" plain>退出登录</el-button>
+            </div>
+
           </div>
         </b-navbar-item>
       </template>
@@ -100,32 +109,6 @@
         <router-view></router-view>    
       </div>
     </template>
-
-    <!-- 页码导航栏 -->
-    <section>
-      <hr>
-      <b-pagination
-      :total="total"
-      v-model="current"
-      :range-before="rangeBefore"
-      :range-after="rangeAfter"
-      :order="order"
-      :size="size"
-      :simple="isSimple"
-      :rounded="isRounded"
-      :per-page="perPage"
-      :icon-prev="prevIcon"
-      :icon-next="nextIcon"
-      aria-next-label="Next page"
-      aria-previous-label="Previous page"
-      aria-page-label="Page"
-      aria-current-label="Current page"
-      :page-input="hasInput"
-      :page-input-position="inputPosition"
-      :debounce-page-input="inputDebounce"
-      />
-    </section>
-    <hr>
 
   </div>
 </template>
@@ -146,34 +129,33 @@ export default {
   },
   // 2. methods：定义组件的方法。
   methods: {
-    ...mapMutations(['login']), // 其实可以写一起，用逗号隔开...
-    ...mapMutations(['logout']),
+    ...mapMutations([
+      'login',
+      'logout',
+    ]),
+    APPlogout() {
+      this.logout(); // 调用 Vuex 的 logout 突变
+      // 删除所有 cookies
+      document.cookie.split(";")
+      .forEach((cookie) => {
+        document.cookie = cookie
+          .replace(/^ +/, "")// 匹配字符串开头的一个或多个空格,并将其替换为空字符串,确保后续操作的正确性。
+          .replace(/=.*/, "=;expires=" + new Date(0).toUTCString() + ";path=/");
+          // 匹配等号及其后面的所有字符，并将其替换为 =;expires= + UTC 时间 + ;path=/。
+      });
+
+      // 跳转到登录页
+      this.$router.push({ path: '/Login' });
+    },
   },
+
   // 3. computed：定义计算属性(具有缓存性)
   computed: {
-    ...mapState(['isLoggedIn'])
+    ...mapState([
+      'isLoggedIn',
+      'UserID',
+    ])
   },
-
-
-
-  data() {
-    return {
-      total: 200,     // 总记录数
-      current: 1,     // 当前页数
-      perPage: 10,    // 每页记录数
-      rangeBefore: 2, // 前面有几页
-      rangeAfter: 2,  // 后面有几页
-      order: 'is-centered',      // 升序或降序    is-right
-      size: 'is-medium',       // 组件的大小  is-small is-medium   is-large
-      isSimple: false,    // 简化模式
-      isRounded: true,   // 圆角样式
-      hasInput: true,    // 页码输入框
-      prevIcon: 'chevron-left',
-      nextIcon: 'chevron-right',
-      inputPosition: '',    // 页码输入框的位置
-      inputDebounce: '500'   // 页码输入的防抖时间
-    }
-  }
 
 }
 
@@ -181,7 +163,28 @@ export default {
 
 
 
-<style>
+<style lang="scss" scoped>
+.b-tooltips {
+  .b-tooltip:not(:last-child) {
+      margin-right: .5em
+  }
+  .b-tooltip {
+      margin-bottom: .5em
+  }
+}
+
+.user-section {
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中，可选 */
+}
+
+.user-section .el-avatar {
+  margin-right: 10px; /* 设置头像和按钮之间的间距 */
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中，可选 */
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

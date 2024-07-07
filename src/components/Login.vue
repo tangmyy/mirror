@@ -47,15 +47,20 @@ export default {
 
   // 3. computed：定义计算属性(具有缓存性)
   computed: {
-    ...mapState(['isLoggedIn'])
+    ...mapState([
+      'isLoggedIn',
+      'UserID',
+    ])
   },
 
   // 记得不要重复定义...
 
   // 2. methods：定义组件的方法。
   methods: {
-    ...mapMutations(['login']), // 其实可以写一起，用逗号隔开...
-    ...mapMutations(['logout']),
+    ...mapMutations([
+      'login',
+      'logout',
+    ]), 
 
     submitForm(formName) {
     // 验证表单
@@ -73,7 +78,7 @@ export default {
           // 登录成功处理
           alert('登录成功!');
           setTimeout(() => {
-            this.login();
+            this.login(this.form.username); // 传递用户名给 login 突变
             console.log('跳转到 Home 页面');
             this.$router.push({ name: 'Home' });
           }, 500);
@@ -81,17 +86,13 @@ export default {
           // 在控制台输出成功信息
           console.log('登录响应:', response.data);
 
-          
-          // 获取并输出所有 cookies
+          // 获取并输出所有 cookies\JSESSIONID
           const cookies = document.cookie;
           console.log('Cookies:', cookies);
-          
-          // 输出 JSESSIONID
-          const jsessionId = cookies
-            .split('; ')
-            .find(row => row.startsWith('JSESSIONID='))
-            ?.split('=')[1];
+          const jsessionId = cookies.split('; ')
+          .find(row => row.startsWith('JSESSIONID='))?.split('=')[1];
           console.log('JSESSIONID:', jsessionId);
+          // 如果没有找到匹配的 cookie（即 find 返回 undefined），则 ?. 操作符确保不会引发错误，结果为 undefined。
 
         })
         .catch(error => {
