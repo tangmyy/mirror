@@ -74,8 +74,31 @@ export default {
       console.log(newValue, oldValue)
     }
   }
-  // 5. 指令
+  // 5. 中央仓库 store
 
+  // 5.2 methods：定义组件的方法。
+  // methods: {
+  //   ...mapMutations(['login']), // 其实可以写一起，用逗号隔开...
+  //   ...mapMutations(['logout']),
+  // },
+
+  // 5.3 computed：定义计算属性(具有缓存性)
+  // computed:{
+  // ...mapState([
+  //  'count',
+  //  'todos'，
+  // ]),
+  // 
+  //   // 如果你想将一个 getter 属性另取一个名字，使用对象形式：
+  //   ...mapGetters([
+  //       'doneTodos',
+  //       'doneTodosCount'
+  //   ]),
+  //   ...mapGetters({
+  //     doneTodos: 'doneTodos',
+  //     doneCount: 'doneTodosCount',
+  //   }),
+  // },
 
 
 // 5. props：定义组件的输入属性。
