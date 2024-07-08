@@ -22,7 +22,7 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary" @click="submitForm('form')">注册</el-button>
+            <el-button class="diybutton" type="primary" @click="submitForm('form')">注册</el-button>
             <el-button @click="resetForm('form')">重置</el-button>
           </el-form-item>
 
@@ -109,7 +109,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 80vh;
     background-color: #f5f5f5;
   }
   
@@ -120,7 +120,7 @@ export default {
   
   .register-title {
     text-align: center;
-    color: #409EFF; /* 使用 Vue 的主题色 */
+    color: #409EFF;
     margin-bottom: 20px;
   }
   </style>

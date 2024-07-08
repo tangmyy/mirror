@@ -1,29 +1,94 @@
 <template>
-  <div>
-    <el-skeleton :rows="18" animated />
-    <el-empty description="图片出差了..."></el-empty>
+<div>
 
+  <el-container>
+    <el-header>Header</el-header>
+    <el-main>Main</el-main>
+  </el-container>
+  
+  <el-container>
+    <el-header>Header</el-header>
+    <el-main>Main</el-main>
+    <el-footer>Footer</el-footer>
+  </el-container>
+  
+  <el-container>
+    <el-aside width="200px">Aside</el-aside>
+    <el-main>Main</el-main>
+  </el-container>
+  
+  <el-container>
+    <el-header>Header</el-header>
+    <el-container>
+      <el-aside width="200px">Aside</el-aside>
+      <el-main>Main</el-main>
+    </el-container>
+  </el-container>
+  
+  <el-container>
+    <el-header>Header</el-header>
+    <el-container>
+      <el-aside width="200px">Aside</el-aside>
+      <el-container>
+        <el-main>Main</el-main>
+        <el-footer>Footer</el-footer>
+      </el-container>
+    </el-container>
+  </el-container>
+  
+  <el-container>
+    <el-aside width="200px">Aside</el-aside>
+    <el-container>
+      <el-header>Header</el-header>
+      <el-main>Main</el-main>
+    </el-container>
+  </el-container>
+  
+  <el-container>
+    <el-aside width="200px">Aside</el-aside>
+    <el-container>
+      <el-header>Header</el-header>
+      <el-main>Main</el-main>
+      <el-footer>Footer</el-footer>
+    </el-container>
+  </el-container>
 
-    <KinesisContainer>
-      <KinesisElement :strength="10">我</KinesisElement>
-      <KinesisElement :strength="20">无</KinesisElement>
-      <KinesisElement :strength="30">敌</KinesisElement>
-      <KinesisElement :strength="40">了</KinesisElement>
-    </KinesisContainer>
-
-
-  </div>
+</div>
 </template>
 
-<script>
 
-export default {
-  name: "App",
-
-
+<style>
+  .el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
   
-
-
-
-};
-</script>
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
+  
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
+  
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+  
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+  
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  }
+</style>

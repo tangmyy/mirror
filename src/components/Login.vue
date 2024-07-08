@@ -79,16 +79,19 @@ export default {
           alert('登录成功!');
           setTimeout(() => {
             this.login(this.form.username); // 传递用户名给 login 突变
-            console.log('跳转到 Home 页面');
-            this.$router.push({ name: 'Home' });
+            console.log('跳转到 原 页面');
+            const routesSW = this.$route.query.redirect || { name: 'Home' };
+            this.$router.push(routesSW);
           }, 500);
-          
-          // 在控制台输出成功信息
-          console.log('登录响应:', response.data);
+          // router 是 Vue Router 实例，包含整个应用的路由配置和控制路由导航的方法
 
-          // 获取并输出所有 cookies\JSESSIONID
+          
+          // 在控制台输出
+          console.log('登录响应:', response.data);
+          // 获取并输出 cookies
           const cookies = document.cookie;
           console.log('Cookies:', cookies);
+          // 获取并输出 JSESSIONID
           const jsessionId = cookies.split('; ')
           .find(row => row.startsWith('JSESSIONID='))?.split('=')[1];
           console.log('JSESSIONID:', jsessionId);
@@ -115,19 +118,15 @@ export default {
     });
   },
 
-
-    
     // 重置以清空表单内容
     resetForm(formName) {
       // this.login(); // 调用 Vuex 的 login mutation
       this.$refs[formName].resetFields();
-    }
+    },
   }
 }
 </script>
   
-
-
 
   <style>
   .register-container {

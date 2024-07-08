@@ -18,7 +18,7 @@
           </b-navbar-item>
         </router-link>
 
-        <router-link class="new" to="/PuBu">
+        <router-link class="new" to="/PublicImage">
           <b-navbar-item>
             公共相册
           </b-navbar-item>
@@ -30,63 +30,58 @@
           </b-navbar-item>
         </router-link>
 
-        <router-link class="new" to="/UpFile">
+        <router-link class="new" to="/Image/Image">
           <b-navbar-item>
             上传图片
           </b-navbar-item>
         </router-link>
 
-        <router-link class="new" to="/VueTwo">
+        <router-link class="new" to="Vue3">
           <b-navbar-item>
-            预加页面
+            Vue3-测试页面
           </b-navbar-item>
         </router-link>
 
-        <router-link class="new" to="/VueThree">
+        <router-link class="new" to="/VueTwo">
           <b-navbar-item>
-            测试页面
+            VueTwo-布局
           </b-navbar-item>
         </router-link>
 
         <b-navbar-dropdown label="其他">
           <router-link class="new" to="/VueFour">
             <b-navbar-item>
-              无限滚动
+              VueFour-无限滚动
             </b-navbar-item>
           </router-link>
           <router-link class="new" to="/VueFive">
             <b-navbar-item>
-              加载中...
+              VueFive-加载中...
             </b-navbar-item>
           </router-link>
           <router-link class="new" to="/VueSix">
             <b-navbar-item>
-              幻灯片
+              VueSix-大图滚动
             </b-navbar-item>
           </router-link>
-          <router-link class="new" to="/PuBu">
+          <router-link class="new" to="/VueSeven">
             <b-navbar-item>
-              移动端瀑布流
-            </b-navbar-item>
-          </router-link>
-          <router-link class="new" to="/PublicImage">
-            <b-navbar-item>
-              VueSeven
+              VueSeven-图片出差了...
             </b-navbar-item>
           </router-link>
           <router-link class="new" to="/VueEight">
             <b-navbar-item>
-              VueEight
+              VueEight-无敌相册
             </b-navbar-item>
           </router-link>
           <router-link class="new" to="/VueNine">
             <b-navbar-item>
-              VueNine
+              VueNine-标签
             </b-navbar-item>
           </router-link>
           <router-link class="new" to="/VueTen">
             <b-navbar-item>
-              VueTen
+              VueTen-确认删除按钮
             </b-navbar-item>
           </router-link>
         </b-navbar-dropdown>
@@ -138,7 +133,7 @@ import Home from './components/Home.vue';
 
 export default {
   name: 'App',
-  // 注册组件
+  // 挂载组件
   components: {   
     Home,
   },
@@ -172,8 +167,8 @@ export default {
     ])
   },
 
-}
 
+}
 </script>
 
 
@@ -219,4 +214,5 @@ export default {
   align-items: center; /* 垂直居中 */
   justify-content: center; /* 水平居中，可选 */
 }
+
 </style> 

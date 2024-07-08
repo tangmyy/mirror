@@ -29,7 +29,6 @@
           图片公开状态: {{isPublic ? "公开" : "私密"}}
         </p>
       </div>
-      
     </b-field>
       
     <b-field>
@@ -57,7 +56,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -69,6 +67,7 @@ export default {
     };
   },
   methods: {
+    // 删除照片  
     deleteDropFile(index) {
       this.dropFiles.splice(index, 1);
     },
@@ -82,35 +81,31 @@ export default {
       // FormData 是一种用于构建和发送 multipart/form-data 编码的表单数据的 Web API
       // formData.append 方法用于将键值对添加到 FormData 对象中。
       // 该方法允许你向 FormData 对象中添加任意数量的字段和文件，类似于 HTML 表单的字段
-      const formData = new FormData();
-      this.dropFiles.forEach((file,index) => {
+      // element：每次迭代时的元素  iterable：一个可迭代对象（如数组、字符串、Map、Set 等）for (const element of iterable) 
+      for (const file of this.dropFiles) {
+        // 创建新的 FormData 对象
+        const formData = new FormData();
         formData.append('file', file);
         formData.append('description', this.value);
         formData.append('Public', this.isPublic);
-      });
 
-      try {
-        const response = await this.$http.post('/images/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          //通过设置 withCredentials 可以确保在跨域请求中带上当前域名下的 Cookies。
-          withCredentials: true, // 确保请求包含凭证
-        });
-        if (response.data === '上传成功') {
+        // 发送单独的上传请求
+        try {
+          const response = await this.$http.post('/images/upload', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            withCredentials: true,
+          });
           alert('上传成功');
-          // 清空已上传的文件
-          this.dropFiles = [];
-          this.value = '';
-          this.isPublic = false;
-        } else {
-          alert('服务器有误，上传失败: ' + response.data);
+        } catch (error) {
+          console.error('网络异常，上传失败', error);
+          alert('网络异常，上传失败');
         }
-      } catch (error) {
-        console.error('网络异常，上传失败', error);
-        alert('网络异常，上传失败');
       }
+
     }
+
   }
 };
 </script>
@@ -121,42 +116,3 @@ export default {
   margin: 0 auto;
 }
 </style>
-
-
-<!-- 饿了么UI -->
-<!-- <template>
-    <div class="upfile">
-    <el-upload
-        class="upload-demo"
-        drag
-        action="https://jsonplaceholder.typicode.com/posts/"
-        multiple>
-        <i class="el-icon-upload"></i>
-        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-    </el-upload>
-    </div>
-</template>
-<style>
-.upfile {
-  margin-top: 20px;
-}
-</style> --><!-- 饿了么UI -->
-<!-- <template>
-    <div class="upfile">
-    <el-upload
-        class="upload-demo"
-        drag
-        action="https://jsonplaceholder.typicode.com/posts/"
-        multiple>
-        <i class="el-icon-upload"></i>
-        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-    </el-upload>
-    </div>
-</template>
-<style>
-.upfile {
-  margin-top: 20px;
-}
-</style> -->

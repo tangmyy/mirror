@@ -47,10 +47,10 @@ export default {
         });
       } catch (error) {
         console.error('网络异常，上传失败', error);
-        alert('未登录，请先登录！');
-        setTimeout(() => {
-          this.$router.push({ name: 'Login' });
-        }, 500);
+        // alert('未登录，请先登录！');
+        // setTimeout(() => {
+        //   this.$router.push({ name: 'Login' });
+        // }, 500);
       }
     },
   },

@@ -1,52 +1,43 @@
 <template>
-  <el-table :data="tableData" style="width: 100%">
+  <div class="Waterfall wf-content">
+    <div class="wf-item" v-for="(image,index) in Image" :key="index">
+      
+      <img alt="" :src="image.imageurl" @load="imageonload">
 
-
-    <el-table-column prop="userid" label="作者ID" width="180"></el-table-column>
-    <el-table-column prop="imageid" label="图片id"></el-table-column>
-
-    <el-table-column prop="imageurl" label="图片" width="180">
-      <template v-slot="scope">
-        <img :src="scope.row.imageurl" alt="image" style="width: 100px; height: auto;" />
-      </template>
-    </el-table-column>
-
-    <el-table-column prop="created" label="上传时间"></el-table-column>
-    <el-table-column prop="url" label="图片路径"> </el-table-column>     
-   
-
-
-  </el-table>
+     </div>
+  </div>
 </template>
 
 <script>
 import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
+import { PuBu } from "@/components/JS/PuBu"
 
-// 导入
 export default {
+  name: 'PublicImage',
+
   data() {
     return {
-      tableData: [],      
+      Image: [],      
     };
   },
 
-  created() {
-    this.fetchPublicImages().then(() => {
-      this.updateTableData();
-    });
-  },
-
+  // computed：定义计算属性(具有缓存性)
   computed:{
+    // ...mapState([  {}[]
     ...mapState([
       'HTTP',
       'PublicImages',
     ]),
-    ...mapGetters({         
 
-    }),
   },
 
-  methods: {
+  created() {
+    this.fetchPublicImages().then(() => {
+      this.updateImageUrls();
+    });
+  },
+
+  methods:{
     ...mapMutations({
       setPublicImages: 'setPublicImages',
     }),
@@ -54,36 +45,39 @@ export default {
       'fetchPublicImages'
     ]),
 
-
-    // 被中央仓库简化了
-    updateTableData() {
-      // console.log('PublicImages:', this.PublicImages);
-      this.tableData = this.PublicImages.map(image => ({
+    updateImageUrls() {
+      this.Image = this.PublicImages.map(image => ({
         ...image,
         imageurl: this.HTTP + image.url,
       }));
     },
 
+    imageonload(){
+      new PuBu({
+        el:".wf-content",
+        column:4,
+        gap:20
+      })
+    },
+  }
 
-    // 中央仓库 无敌了 全部取代 
-    // fetchData() {
-    //   this.$http.get("/images/public")
-    //   .then((response) => {
-    //     //假设响应数据是一个图像对象数组
-    //     this.tableData = response.data.map(images => {
-    //       const imageUrl = this.HTTP + images.url;
-    //       return {
-    //         ...images,                                   // 使用对象展开运算符保留图像对象的所有属性
-    //         imageurl: imageUrl,
-    //       };
-    //     });
-    //   }).catch((error) => {
-    //     console.error("Error fetching images:", error);
-    //   });
-    // },
 
-  },
 }
 </script>
 
-
+<style scoped>
+  .Waterfall{
+    width:960px;
+    margin:0 auto;
+    position:relative
+  }
+  .wf-item{
+    position:absolute;
+    border:5px solid white;
+    box-shadow: -3px 2px 5px rgba(0,0,0,0.5);
+  }
+  .wf-item img{
+    height:100%;
+    width:100%
+  }
+</style>

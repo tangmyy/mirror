@@ -19,8 +19,6 @@ const store = new Vuex.Store({
 
       PublicImageURL: [],
       UserImageURL: [],
-
-
     },
 
     // this.$store.commit('xxx') 提交突变

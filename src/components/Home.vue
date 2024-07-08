@@ -61,10 +61,6 @@ export default{
       adddd: 'add', // 将 `this.add()` 映射为 `this.$store.commit('increment')`
       abbbb: 'abb',
     })
-    // @click="add"
-    // @click="abb"
-    // add(){this.$store.commit("add", 5)},
-    // abb(){this.$store.commit("abb", 5)},
   },
 
   // 页码导航栏data
