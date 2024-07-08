@@ -16,6 +16,7 @@ const store = new Vuex.Store({
       isLoggedIn: false,
       HTTP: 'http://localhost:8088',
       PublicImages: [],
+
       PublicImageURL: [],
       UserImageURL: [],
 
@@ -54,6 +55,7 @@ const store = new Vuex.Store({
 
     // 派发异步操作的逻辑(不做修改，修改只在mutations实现)
     actions: {
+
       fetchPublicImages({ commit }) {
         // 不可以使用 this.$http.get("/images/public")
         return axios.get("http://localhost:8088/api/images/public")
@@ -63,6 +65,7 @@ const store = new Vuex.Store({
           console.error("Error fetching images:", error);
         });
       },
+      
     },
 
 

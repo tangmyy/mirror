@@ -129,15 +129,6 @@ export default {
 
 
 
-
-
-
-
-
-
-
-
-
   <style>
   .register-container {
     display: flex;

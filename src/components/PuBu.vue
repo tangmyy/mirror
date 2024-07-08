@@ -1,7 +1,9 @@
 <template>
   <div class="Waterfall wf-content">
     <div class="wf-item" v-for="(image,index) in imageUrl" :key="index">
+      
       <img alt="" :src="image.imageurl" @load="imageonload">
+
      </div>
   </div>
 </template>

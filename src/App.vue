@@ -18,7 +18,7 @@
           </b-navbar-item>
         </router-link>
 
-        <router-link class="new" to="/PublicImage">
+        <router-link class="new" to="/PuBu">
           <b-navbar-item>
             公共相册
           </b-navbar-item>
@@ -69,7 +69,7 @@
               移动端瀑布流
             </b-navbar-item>
           </router-link>
-          <router-link class="new" to="/VueSeven">
+          <router-link class="new" to="/PublicImage">
             <b-navbar-item>
               VueSeven
             </b-navbar-item>
