@@ -19,7 +19,7 @@ import VueEight from '../components/VueEight.vue'
 import VueNine from '../components/VueNine.vue'
 import VueTen from '../components/VueTen.vue'
 
-import Image from '../components/Image/Image.vue'
+import UPimage from '../components/Image/UPimage.vue'
 
 
 
@@ -60,9 +60,9 @@ const router = new VueRouter({
         component: PrivateImage, 
         meta: { requiresAuth: true }
       },
-      { path:'/Image/Image', 
-        name: 'Image',
-        component: Image, 
+      { path:'/Image/UPimage', 
+        name: 'UPimage',
+        component: UPimage, 
       },
 
       { path:'/VueTwo', 

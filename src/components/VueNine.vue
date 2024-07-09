@@ -5,7 +5,7 @@
               <b-numberinput v-model="maxs" min="1" controls-position="compact"></b-numberinput>
           </b-field>
           <b-field label="Icon Pack">
-              <b-input v-model="packs" placeholder="e.g. mdi, fa or other"></b-input>
+              <b-input v-model="packs"></b-input>
           </b-field>
           <b-field label="Icon">
               <b-input v-model="icons"></b-input>
@@ -99,19 +99,21 @@
     export default {
         data() {
             return {
-                rate: 4.6,
-                maxs: 5,    // 最大标签数量
-                sizes: '',
-                packs: 'mdi',
-                icons: 'star',
-                score: false,
-                custom: '',
-                text: false,
-                texts: ['Very bad', 'Bad', 'Good', 'Very good', 'Awesome'],
-                isRtl:false,
-                isSpaced: false,
-                isDisabled: true,
-                locale: undefined // Browser locale
+              maxs: 5,        // 最大标签数量
+              texts: ['Very bad', 'Bad', 'Good', 'Very good', 'Awesome'],
+              rate: 4.6,      // 当前评分值
+              
+              sizes: 'is-large',      // 图标的大小
+              packs: 'fa',   // 选择图标包。在这个例子中，placeholder="e.g. mdi, fa or other"
+              icons: 'star',  // 选择图标的类型。这里选择的是星星图标 (star)
+              score: true,   // 决定是否显示评分的数值。如果为 true，则显示评分的数值；如果为 false，则不显示
+              custom: '',     // 自定义文本，可以在评分组件中显示额外的文本信息
+              text: false,    // 决定是否显示文本标签。如果为 true，则显示与每个评分相关的文本标签；如果为 false，则不显示
+              // 一个数组，包含每个评分的文本标签。例如，当评分为 1 时显示 'Very bad'，评分为 2 时显示 'Bad' 等等。
+              isRtl:false,      //如果为 true，则组件从右到左排列；如果为 false，则从左到右排列。
+              isSpaced: true,  // 设置评分图标之间是否有间距。如果为 true，则图标之间有间距；如果为 false，则图标之间没有额外的间距
+              isDisabled: false, // 设置组件是否为只读模式。如果为 true，则组件为只读模式，用户不能更改评分；如果为 false，用户可以更改评分
+              locale: undefined // 设置本地化 (locale) 参数，可以用于多语言支持。如果设置为 undefined，则使用浏览器的默认语言
             }
         }
     }

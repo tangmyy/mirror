@@ -28,7 +28,6 @@ export default {
       'HTTP',
       'PublicImages',
     ]),
-
   },
 
   created() {

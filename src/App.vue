@@ -30,7 +30,7 @@
           </b-navbar-item>
         </router-link>
 
-        <router-link class="new" to="/Image/Image">
+        <router-link class="new" to="/Image/Upimage">
           <b-navbar-item>
             上传图片
           </b-navbar-item>

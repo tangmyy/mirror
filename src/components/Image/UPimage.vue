@@ -75,27 +75,19 @@ export default {
   },
   data() {
     return {
-      beLazy: false,
-      value: '',
-      dropFiles: [], // 拖放上传的文件数组
-      isPublic: false, // 图像公开状态
+      activeStep: 0,            // 当前活跃的步骤索引
 
-      activeStep: 0,
-      isRounded: true,
-      isAnimated: true,
-      isStepsClickable: true,
-
-      hasNavigation: true,
-      customNavigation: false,
-      isProfileSuccess: false,
+      isRounded: true,          // 步骤标记是否为圆形
+      isAnimated: true,         // 导航是否有动画效果
+      isStepsClickable: true,   // 步骤标记是否可点击
+      hasNavigation: true,      // 决定是否显示导航按钮（如“上一步”和“下一步”按钮）
+      customNavigation: false,  // 决定是否使用自定义导航按钮
+      isProfileSuccess: false,  // 决定Profile步骤是否标记为成功状
       
-      prevIcon: 'chevron-left',
-      nextIcon: 'chevron-right',
-      labelPosition: 'bottom',
-      mobileMode: 'minimalist',
-
-      // 展示
-      isCardModalActive: false
+      prevIcon: 'chevron-left',     // 设置“上一步”导航按钮的图标
+      nextIcon: 'chevron-right',    // 设置“下一步”导航按钮的图标
+      labelPosition: 'bottom',      // 设置步骤标签的位置
+      mobileMode: 'minimalist',     // 设置移动设备上的显示模式。可以设置为 'minimalist' 或 'compact'。
     }
   },
   methods: {
@@ -103,40 +95,6 @@ export default {
     deleteDropFile(index) {
       this.dropFiles.splice(index, 1);
     },
-
-    async uploadImage() {
-      // 检查是否有文件被拖放上传
-      if (this.dropFiles.length === 0) {
-        alert('请先选择一个文件');
-        return;
-      }
-      // FormData 是一种用于构建和发送 multipart/form-data 编码的表单数据的 Web API
-      // formData.append 方法用于将键值对添加到 FormData 对象中。
-      // 该方法允许你向 FormData 对象中添加任意数量的字段和文件，类似于 HTML 表单的字段
-      // element：每次迭代时的元素  iterable：一个可迭代对象（如数组、字符串、Map、Set 等）for (const element of iterable) 
-      for (const file of this.dropFiles) {
-        // 创建新的 FormData 对象
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('description', this.value);
-        formData.append('Public', this.isPublic);
-
-        // 发送单独的上传请求
-        try {
-          const response = await this.$http.post('/images/upload', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-            withCredentials: true,
-          });
-          alert('上传成功');
-        } catch (error) {
-          console.error('网络异常，上传失败', error);
-          alert('网络异常，上传失败');
-        }
-      }
-
-    }
 
   }
 
