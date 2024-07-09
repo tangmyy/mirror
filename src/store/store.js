@@ -21,7 +21,7 @@ const store = new Vuex.Store({
       // UserImageURL: [],
 
       dropFiles: [], // 拖放上传的文件数组
-      intro: '',      // 插值表达
+      description: '',      // 图片描述
       texts: [],    // 标签数组
       isPublic: false, // 图像公开状态
     },
@@ -39,7 +39,7 @@ const store = new Vuex.Store({
       setPublicImages(state, images) {
         state.PublicImages = images;
       },
-      
+
 
       updateDropFiles(state, files) {
         state.dropFiles = files;
@@ -49,9 +49,10 @@ const store = new Vuex.Store({
         state.dropFiles.splice(index, 1);
         console.log('Files delete:', state.dropFiles);
       },
-      updateIntro(state, intro) {
-        state.intro = intro;
-        console.log('value update:', state.intro);
+
+      updateDescription(state, description) {
+        state.description = description;
+        console.log('value update:', state.description);
       },
       updateIsPublic(state, isPublic) {
         state.isPublic = isPublic;

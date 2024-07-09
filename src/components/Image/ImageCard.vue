@@ -26,8 +26,8 @@
                 </figure>
               </div> -->
               <div class="media-content">
-                <p class="title is-4">作者账户</p>
-                <p class="subtitle is-6">作者ID</p>
+                <p class="title is-4">{{ UserID }}</p>
+                <p class="subtitle is-6">{{ UserID }}</p>
               </div>
             </div>
             
@@ -56,18 +56,34 @@
 import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
 
   export default {
+    mounted() {
+      console.log('文件数组:', this.dropFiles);
+    },
     name: 'ImageCard',
-
     data() {
       return {
         isCardModalActive: false          // 是否展示
       }
     },
+
     computed: {
-    ...mapState(['dropFiles', 'description', 'isPublic', 'texts']),
+    ...mapState([
+      'dropFiles', 
+      'description', 
+      'isPublic', 
+      'texts',
+      'UserID',
+    ]),
   },
 
     methods: {
+      ...mapMutations([
+        'updateDropFiles', 
+        'deleteDropFile',
+        'updateDescription', 
+        'updateIsPublic', 
+        'updateTags',
+      ]),
       async uploadImage() {
         // 检查是否有文件被拖放上传
         if (this.dropFiles.length === 0) {
@@ -82,7 +98,7 @@ import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
           // 创建新的 FormData 对象
           const formData = new FormData();
           formData.append('file', file);
-          formData.append('description', this.value);
+          formData.append('description', this.description);
           formData.append('tags', 'tags');
           formData.append('Public', this.isPublic);
           console.log('formData:', formData);

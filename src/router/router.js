@@ -63,6 +63,7 @@ const router = new VueRouter({
       { path:'/Image/UPimage', 
         name: 'UPimage',
         component: UPimage, 
+        meta: { requiresAuth: true }
       },
 
       { path:'/VueTwo', 

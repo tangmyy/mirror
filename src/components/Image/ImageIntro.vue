@@ -9,11 +9,11 @@
         <br>
         <b-input type="text"
         :lazy="beLazy"
-        v-model="localIntro"
+        v-model="localDescription"
         placeholder="请输入...">
       </b-input>
       <br>
-      照片描述: {{localIntro}}
+      照片描述: {{localDescription}}
     </p>
   </b-field>
 </div>
@@ -32,20 +32,20 @@ export default {
     }
   },
   computed: {
-    ...mapState(['intro']),
-    localIntro: {
+    ...mapState(['description']),
+    localDescription: {
       get() {
-        return this.intro;
+        return this.description;
       },
       set(value) {
-        this.updateIntro(value);
+        this.updateDescription(value);
       }
     }
   },
   
 
   methods: {
-    ...mapMutations(['updateIntro']),
+    ...mapMutations(['updateDescription']),
   },
 
 
