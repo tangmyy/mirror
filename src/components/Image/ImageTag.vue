@@ -32,6 +32,7 @@ export default {
     ...mapState(['tags']),
     localTags: {
       get() {
+        console.log('tags:', this.tags);
         return this.intro;
       },
       set(value) {

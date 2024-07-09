@@ -1,94 +1,45 @@
 <template>
 <div>
 
-  <el-container>
-    <el-header>Header</el-header>
-    <el-main>Main</el-main>
-  </el-container>
-  
-  <el-container>
-    <el-header>Header</el-header>
-    <el-main>Main</el-main>
-    <el-footer>Footer</el-footer>
-  </el-container>
-  
-  <el-container>
-    <el-aside width="200px">Aside</el-aside>
-    <el-main>Main</el-main>
-  </el-container>
-  
-  <el-container>
-    <el-header>Header</el-header>
-    <el-container>
-      <el-aside width="200px">Aside</el-aside>
-      <el-main>Main</el-main>
-    </el-container>
-  </el-container>
-  
-  <el-container>
-    <el-header>Header</el-header>
-    <el-container>
-      <el-aside width="200px">Aside</el-aside>
-      <el-container>
-        <el-main>Main</el-main>
-        <el-footer>Footer</el-footer>
-      </el-container>
-    </el-container>
-  </el-container>
-  
-  <el-container>
-    <el-aside width="200px">Aside</el-aside>
-    <el-container>
-      <el-header>Header</el-header>
-      <el-main>Main</el-main>
-    </el-container>
-  </el-container>
-  
-  <el-container>
-    <el-aside width="200px">Aside</el-aside>
-    <el-container>
-      <el-header>Header</el-header>
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
-    </el-container>
-  </el-container>
+<template>
+  <el-popover
+    placement="top-start"
+    title="标题"
+    width="200"
+    trigger="hover"
+    content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+    <el-button slot="reference">hover 激活</el-button>
+  </el-popover>
 
-</div>
+  <el-popover
+    placement="bottom"
+    title="标题"
+    width="200"
+    trigger="click"
+    content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+    <el-button slot="reference">click 激活</el-button>
+  </el-popover>
+
+  
 </template>
 
 
-<style>
-  .el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-  
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-  
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-  
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-  
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
-</style>
+<el-button type="primary" icon="el-icon-delete">删除</el-button>
+<el-button type="primary" icon="el-icon-search">搜索</el-button>
+
+
+<template>
+
+
+  <el-popover
+    placement="bottom"
+    title="标题"
+    width="200"
+    trigger="click"
+    content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+    <el-button slot="reference">click 激活</el-button>
+  </el-popover>
+</template>
+
+</div>
+</template>

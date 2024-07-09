@@ -56,7 +56,7 @@ const store = new Vuex.Store({
       },
       updateIsPublic(state, isPublic) {
         state.isPublic = isPublic;
-        console.log('value isPublic:', state.isPublic);
+        console.log('value public:', state.isPublic);
 
       },
       updateTags(state, texts) {

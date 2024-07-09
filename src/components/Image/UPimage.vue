@@ -22,7 +22,7 @@
         <ImageTag></ImageTag>
       </b-step-item>
 
-      <b-step-item step="4" label="是否公开" :clickable="isStepsClickable" class="step-item">
+      <b-step-item step="4" label="公开状态" :clickable="isStepsClickable" class="step-item">
         <ImagePublic></ImagePublic>
       </b-step-item>
 

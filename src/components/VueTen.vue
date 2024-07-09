@@ -5,6 +5,7 @@
     <el-radio-button :label="false">展开</el-radio-button>
     <el-radio-button :label="true">收起</el-radio-button>
   </el-radio-group>
+
   <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
     <el-submenu index="1">
       <template slot="title">
@@ -38,17 +39,7 @@
     </el-menu-item>
   </el-menu>
 
-  <el-popover
-    placement="top"
-    width="160"
-    v-model="visible">
-    <p>这是一段内容这是一段内容确定删除吗？</p>
-    <div style="text-align: right; margin: 0">
-      <el-button size="mini" type="text" @click="visible = false">取消</el-button>
-      <el-button type="primary" size="mini" @click="visible = false">确定</el-button>
-    </div>
-    <el-button slot="reference">删除</el-button>
-  </el-popover>
+
 
   
 </div>
@@ -64,8 +55,6 @@
     data() {
       return {
         isCollapse: true,
-        // 删除
-        visible: false,
       };
     },
     methods: {

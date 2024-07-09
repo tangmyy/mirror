@@ -4,7 +4,7 @@
     <b-navbar>
       <template #brand>
         <!-- src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png" -->
-        <b-navbar-item tag="router-link" :to="{ path: '/Login' }">
+        <b-navbar-item tag="router-link" :to="{ path: '/PublicImage' }">
           <img
           src="@/assets/MirrorLogo.png"
           alt="图片被臭冥冥吃了"
@@ -36,15 +36,15 @@
           </b-navbar-item>
         </router-link>
 
-        <router-link class="new" to="Vue3">
-          <b-navbar-item>
-            Vue3-测试页面
-          </b-navbar-item>
-        </router-link>
-
         <router-link class="new" to="/VueTwo">
           <b-navbar-item>
             VueTwo-布局
+          </b-navbar-item>
+        </router-link>
+
+        <router-link class="new" to="Vue3">
+          <b-navbar-item>
+            Vue3-测试页面
           </b-navbar-item>
         </router-link>
 

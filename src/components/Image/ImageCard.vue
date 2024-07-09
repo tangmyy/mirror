@@ -34,7 +34,7 @@
             <div class="content">
               <!-- 这是作品描述这是作品描述这是作品描述这是作品描述这是作品描述这是作品描述。 -->
                {{ description }}
-              <a>@话题</a>.<a>#标签</a> <a># {{ texts }}</a> 
+              <a>@话题</a>. <a> #{{ texts }}</a> 
               <br>
               <small>11:09 PM - 1 Jan 2016（上传时间）</small>
             </div>
@@ -58,7 +58,7 @@ import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
 
 export default {
   mounted() {
-    console.log('文件数组:', this.dropFiles);
+    // console.log('文件数组:', this.dropFiles);
   },
   name: 'ImageCard',
     data() {
@@ -69,13 +69,13 @@ export default {
   },
 
   computed: {
-  ...mapState([
-    'dropFiles', 
-    'description', 
-    'isPublic', 
-    'texts',
-    'UserID',
-  ]),
+    ...mapState([
+      'dropFiles', 
+      'description', 
+      'isPublic', 
+      'texts',
+      'UserID',
+    ]),
   },
 
   watch: {
@@ -90,6 +90,8 @@ export default {
       'updateIsPublic', 
       'updateTags',
     ]),
+    // URL.createObjectURL 是一个静态方法，用于创建一个表示给定 File 对象或 Blob 对象的 URL。
+    // 这种 URL 是临时的，并且是浏览器特定的，通常用于预览用户上传的本地文件（例如图片或视频）而无需先将其上传到服务器。
     generateImageSrc() {
       if (this.dropFiles.length > 0) {
         this.imageSrc = URL.createObjectURL(this.dropFiles[0]);
@@ -111,9 +113,14 @@ export default {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('description', this.description);
-        formData.append('tags', 'tags');
-        formData.append('Public', this.isPublic);
-        console.log('formData:', formData);
+        // formData.append('tags', JSON.stringify(this.texts)); // 将 tags 转换为 JSON 字符串
+        // formData.append('isPublic', this.isPublic);
+        formData.append('tags', JSON.stringify(this.texts)); // 确保 tags 是 JSON 字符串
+        formData.append('isPublic', this.isPublic.toString()); // 确保 isPublic 作为字符串传递
+        // 打印 FormData 内容
+        for (let pair of formData.entries()) {
+          console.log(pair[0] + ': ' + pair[1]);
+        }
         // 发送上传请求
         try {
           const response = await this.$http.post('/images/upload', formData, {
