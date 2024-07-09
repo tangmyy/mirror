@@ -17,17 +17,13 @@ const store = new Vuex.Store({
       HTTP: 'http://localhost:8088',
       PublicImages: [],
 
-      PublicImageURL: [],
-      UserImageURL: [],
+      // PublicImageURL: [],
+      // UserImageURL: [],
 
       dropFiles: [], // 拖放上传的文件数组
-      TempFiles: [], // 拖放上传的临时文件数组
-      beLazy: false,  // 是否懒加载
-      value: '',      // 插值表达
-      maxs: 5,      // 最大标签数量
+      intro: '',      // 插值表达
       texts: [],    // 标签数组
       isPublic: false, // 图像公开状态
-      isCardModalActive: false,   // 上传/点击上传
     },
 
     // this.$store.commit('xxx') 提交突变
@@ -43,9 +39,29 @@ const store = new Vuex.Store({
       setPublicImages(state, images) {
         state.PublicImages = images;
       },
+      
+
       updateDropFiles(state, files) {
         state.dropFiles = files;
+        console.log('Files update:', state.dropFiles);
       },
+      deleteDropFile(state, index) {
+        state.dropFiles.splice(index, 1);
+        console.log('Files delete:', state.dropFiles);
+      },
+      updateIntro(state, intro) {
+        state.intro = intro;
+        console.log('value update:', state.intro);
+      },
+      updateIsPublic(state, isPublic) {
+        state.isPublic = isPublic;
+        console.log('value isPublic:', state.isPublic);
+
+      },
+      updateTags(state, texts) {
+        console.log('value texts:', state.texts);
+        state.texts = texts;
+      }
 
 
     },

@@ -3,7 +3,7 @@
     <section>
       <b-field label="为图片添加标签🏷">
         <b-taginput
-          v-model="texts"
+          v-model="localTags"
           :maxtags="maxs">
         </b-taginput>
       </b-field>
@@ -20,15 +20,28 @@ export default {
   data() {
     return {
       maxs: 5,      // 最大标签数量
-      texts: [],    // 标签数组
     };
   },
-  
-  watch: {
-    texts(newTags,) {
-      console.log('当前标签:', newTags);
+
+
+  methods: {
+    ...mapMutations(['updateTags']),
+  },
+
+  computed: {
+    ...mapState(['tags']),
+    localTags: {
+      get() {
+        return this.intro;
+      },
+      set(value) {
+        this.updateTags(value);
+      }
     }
-  }
+  },
+
+
+  
 }
 </script>
 

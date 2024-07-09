@@ -75,11 +75,6 @@ export default {
   },
   data() {
     return {
-      beLazy: false,
-      value: '',
-      dropFiles: [], // 拖放上传的文件数组
-      isPublic: false, // 图像公开状态
-
       activeStep: 0,
       isRounded: true,
       isAnimated: true,
@@ -93,9 +88,6 @@ export default {
       nextIcon: 'chevron-right',
       labelPosition: 'bottom',
       mobileMode: 'minimalist',
-
-      // 展示
-      isCardModalActive: false
     }
   },
   methods: {

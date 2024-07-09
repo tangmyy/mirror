@@ -53,22 +53,21 @@
 
 
 <script>
-  export default {
-    name: 'ImageAdd',
+import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
 
+  export default {
+    name: 'ImageCard',
 
     data() {
       return {
-        // 展示
-        isCardModalActive: false
+        isCardModalActive: false          // 是否展示
       }
     },
+    computed: {
+    ...mapState(['dropFiles', 'description', 'isPublic', 'texts']),
+  },
+
     methods: {
-      // 删除照片  
-      deleteDropFile(index) {
-        this.dropFiles.splice(index, 1);
-      },
-  
       async uploadImage() {
         // 检查是否有文件被拖放上传
         if (this.dropFiles.length === 0) {
@@ -84,8 +83,9 @@
           const formData = new FormData();
           formData.append('file', file);
           formData.append('description', this.value);
+          formData.append('tags', 'tags');
           formData.append('Public', this.isPublic);
-  
+          console.log('formData:', formData);
           // 发送单独的上传请求
           try {
             const response = await this.$http.post('/images/upload', formData, {
@@ -107,7 +107,7 @@
   
   }
   
-  </script>
+</script>
   
   
   

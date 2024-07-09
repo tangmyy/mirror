@@ -2,11 +2,11 @@
   <div class="step-content">
     <b-field>
       <div>
-        <b-switch v-model="isPublic">公开图片</b-switch>
+        <b-switch v-model="localIsPublic">公开图片</b-switch>
       </div>
       <div>
         <p>
-          图片公开状态: {{isPublic ? "公开" : "私密"}}
+          图片公开状态: {{localIsPublic ? "公开" : "私密"}}
         </p>
       </div>
     </b-field>
@@ -20,12 +20,21 @@ import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
 export default {
   name: 'ImagePublic',
 
-  data() {
-    return {
-      isPublic: false, // 图像公开状态
+  computed: {
+    ...mapState(['isPublic']),
+    localIsPublic: {
+      get() {
+        return this.isPublic;
+      },
+      set(value) {
+        this.updateIsPublic(value);
+      }
     }
   },
-  
+
+  methods: {
+    ...mapMutations(['updateIsPublic']),
+  },
 
 
 }

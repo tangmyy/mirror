@@ -9,11 +9,11 @@
         <br>
         <b-input type="text"
         :lazy="beLazy"
-        v-model="value"
+        v-model="localIntro"
         placeholder="请输入...">
       </b-input>
       <br>
-      照片描述: {{value}}
+      照片描述: {{localIntro}}
     </p>
   </b-field>
 </div>
@@ -26,14 +26,28 @@ import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
 
 export default {
   name: 'ImageIntro',
-
   data() {
     return {
       beLazy: false,  // 是否懒加载
-      value: '',      // 插值表达
+    }
+  },
+  computed: {
+    ...mapState(['intro']),
+    localIntro: {
+      get() {
+        return this.intro;
+      },
+      set(value) {
+        this.updateIntro(value);
+      }
     }
   },
   
+
+  methods: {
+    ...mapMutations(['updateIntro']),
+  },
+
 
 }
 </script>
