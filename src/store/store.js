@@ -19,6 +19,15 @@ const store = new Vuex.Store({
 
       PublicImageURL: [],
       UserImageURL: [],
+
+      dropFiles: [], // 拖放上传的文件数组
+      TempFiles: [], // 拖放上传的临时文件数组
+      beLazy: false,  // 是否懒加载
+      value: '',      // 插值表达
+      maxs: 5,      // 最大标签数量
+      texts: [],    // 标签数组
+      isPublic: false, // 图像公开状态
+      isCardModalActive: false,   // 上传/点击上传
     },
 
     // this.$store.commit('xxx') 提交突变
@@ -34,6 +43,10 @@ const store = new Vuex.Store({
       setPublicImages(state, images) {
         state.PublicImages = images;
       },
+      updateDropFiles(state, files) {
+        state.dropFiles = files;
+      },
+
 
     },
 

@@ -59,26 +59,6 @@
 
     data() {
       return {
-        beLazy: false,
-        value: '',
-        dropFiles: [], // 拖放上传的文件数组
-        isPublic: false, // 图像公开状态
-  
-        activeStep: 0,
-        isRounded: true,
-        showSocial: true,
-        isAnimated: true,
-        isStepsClickable: true,
-  
-        hasNavigation: true,
-        customNavigation: false,
-        isProfileSuccess: false,
-        
-        prevIcon: 'chevron-left',
-        nextIcon: 'chevron-right',
-        labelPosition: 'bottom',
-        mobileMode: 'minimalist',
-  
         // 展示
         isCardModalActive: false
       }
