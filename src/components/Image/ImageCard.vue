@@ -11,33 +11,31 @@
       </div>
       
       <b-modal v-model="isCardModalActive" :width="640" scroll="keep">
-        <div class="card" v-for="(file, index) in dropFiles" :key="index">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img :src="file.previewUrl" alt="哎呀，图片走丢啦...">
-              </figure>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="image.imageurl" alt="哎呀，图片走丢啦...">
+            </figure>
+          </div>
+          
+          <div class="card-content">
+            <div class="media">
+              <!-- <div class="media-left">
+                <figure class="image is-48x48">
+                  <img src="/static/img/placeholder-1280x960.png" alt="头像">
+                </figure>
+              </div> -->
+              <div class="media-content">
+                <p class="title is-4">{{ UserID }}</p>
+                <p class="subtitle is-6">{{ UserID }}</p>
+              </div>
             </div>
             
-            <div class="card-content">
-              <div class="media">
-                <!-- <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img src="/static/img/placeholder-1280x960.png" alt="头像">
-                  </figure>
-                </div> -->
-                <div class="media-content">
-                  <p class="title is-4">{{ UserID }}</p>
-                  <p class="subtitle is-6">{{ UserID }}</p>
-                </div>
-              </div>
-              
-              <div class="content">
-                这是作品描述这是作品描述这是作品描述这是作品描述这是作品描述这是作品描述。
-                <a>@话题</a>.<a>#标签</a> <a>#标签</a>
-                <br>
-                <small>11:09 PM - 1 Jan 2016</small>
-              </div>
+            <div class="content">
+              这是作品描述这是作品描述这是作品描述这是作品描述这是作品描述这是作品描述。
+              <a>@话题</a>.<a>#标签</a> <a>#标签</a>
+              <br>
+              <small>11:09 PM - 1 Jan 2016</small>
             </div>
           </div>
         </div>
@@ -79,11 +77,6 @@ export default {
 
 
   methods: {
-    ...mapMutations([
-      'updateDropFiles', // 更新文件数组的突变
-    ]),
-
-
 
     async uploadImage() {
       // 检查是否有文件被拖放上传
@@ -129,41 +122,41 @@ export default {
   
   
   
-  <style scoped>
-  .upload-form {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  .step-item {
-    margin-right: 400px; /* 设置水平间距 */
-  }
-  
-  
-  .step-content {
-    margin-left: 400px; /* 设置水平间距 */
-    margin-top: 150px;
-    margin-bottom: 150px;
-  }
-  
-  .little {
-    margin-top: 20px;
-  }
-  
-  
-  .fixed-navigation {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    gap: 10px;
-  }
-  
-  .fixed-div {
-    position: absolute;
-    bottom: 20px; /* 距离底部20px */
-    right: 20px; /* 距离右侧20px */
-    padding: 10px; /* 内边距 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
-  }
-  </style>
+<style scoped>
+.upload-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.step-item {
+  margin-right: 400px; /* 设置水平间距 */
+}
+
+
+.step-content {
+  margin-left: 400px; /* 设置水平间距 */
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+.little {
+  margin-top: 20px;
+}
+
+
+.fixed-navigation {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.fixed-div {
+  position: absolute;
+  bottom: 20px; /* 距离底部20px */
+  right: 20px; /* 距离右侧20px */
+  padding: 10px; /* 内边距 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+}
+</style>
