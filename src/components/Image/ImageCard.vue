@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-image">
             <figure class="image is-4by3">
-              <img src="/static/img/placeholder-1280x960.png" alt="哎呀，图片走丢啦...">
+              <img :src="imageSrc" alt="哎呀，图片走丢啦...">
             </figure>
           </div>
           
@@ -32,8 +32,9 @@
             </div>
             
             <div class="content">
-              这是作品描述这是作品描述这是作品描述这是作品描述这是作品描述这是作品描述。
-              <a>@话题</a>.<a>#标签</a> <a>#标签</a>
+              <!-- 这是作品描述这是作品描述这是作品描述这是作品描述这是作品描述这是作品描述。 -->
+               {{ description }}
+              <a>@话题</a>.<a>#标签</a> <a># {{ texts }}</a> 
               <br>
               <small>11:09 PM - 1 Jan 2016（上传时间）</small>
             </div>
@@ -45,7 +46,7 @@
     <b-field class="file">
       <a class="button is-primary is-fullwidth" @click="uploadImage">
         <b-icon icon="upload"></b-icon>
-        <span>{{ dropFiles.length > 0 ? "上传图片" : "点击上传"}}</span>
+        <span>{{ dropFiles.length > 0 ? "点击上传" : "上传图片"}}</span>
       </a>
     </b-field>
   </div>
@@ -55,73 +56,84 @@
 <script>
 import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
 
-  export default {
-    mounted() {
-      console.log('文件数组:', this.dropFiles);
-    },
-    name: 'ImageCard',
+export default {
+  mounted() {
+    console.log('文件数组:', this.dropFiles);
+  },
+  name: 'ImageCard',
     data() {
       return {
-        isCardModalActive: false          // 是否展示
+        imageSrc: '',                      // 用于存储图片的 URL
+        isCardModalActive: false,          // 是否展示
+      }
+  },
+
+  computed: {
+  ...mapState([
+    'dropFiles', 
+    'description', 
+    'isPublic', 
+    'texts',
+    'UserID',
+  ]),
+  },
+
+  watch: {
+    dropFiles: 'generateImageSrc',
+  },
+  
+  methods: {
+    ...mapMutations([
+      'updateDropFiles', 
+      'deleteDropFile',
+      'updateDescription', 
+      'updateIsPublic', 
+      'updateTags',
+    ]),
+    generateImageSrc() {
+      if (this.dropFiles.length > 0) {
+        this.imageSrc = URL.createObjectURL(this.dropFiles[0]);
       }
     },
 
-    computed: {
-    ...mapState([
-      'dropFiles', 
-      'description', 
-      'isPublic', 
-      'texts',
-      'UserID',
-    ]),
-  },
-
-    methods: {
-      ...mapMutations([
-        'updateDropFiles', 
-        'deleteDropFile',
-        'updateDescription', 
-        'updateIsPublic', 
-        'updateTags',
-      ]),
-      async uploadImage() {
-        // 检查是否有文件被拖放上传
-        if (this.dropFiles.length === 0) {
+    async uploadImage() {
+      // 检查是否有文件被拖放上传
+      if (this.dropFiles.length === 0) {
           alert('请先选择一个文件');
           return;
-        }
+      }
         // FormData 是一种用于构建和发送 multipart/form-data 编码的表单数据的 Web API
         // formData.append 方法用于将键值对添加到 FormData 对象中。
         // 该方法允许你向 FormData 对象中添加任意数量的字段和文件，类似于 HTML 表单的字段
         // element：每次迭代时的元素  iterable：一个可迭代对象（如数组、字符串、Map、Set 等）for (const element of iterable) 
-        for (const file of this.dropFiles) {
-          // 创建新的 FormData 对象
-          const formData = new FormData();
-          formData.append('file', file);
-          formData.append('description', this.description);
-          formData.append('tags', 'tags');
-          formData.append('Public', this.isPublic);
-          console.log('formData:', formData);
-          // 发送单独的上传请求
-          try {
-            const response = await this.$http.post('/images/upload', formData, {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
-              withCredentials: true,
-            });
-            alert('上传成功');
-          } catch (error) {
+      for (const file of this.dropFiles) {
+        // 创建新的 FormData 对象
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('description', this.description);
+        formData.append('tags', 'tags');
+        formData.append('Public', this.isPublic);
+        console.log('formData:', formData);
+        // 发送上传请求
+        try {
+          const response = await this.$http.post('/images/upload', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            withCredentials: true,
+          });
+          alert('上传成功');
+        } catch (error) {
             console.error('网络异常，上传失败', error);
             alert('网络异常，上传失败');
-          }
         }
-  
       }
-  
+    
     }
-  
+    
   }
+}
+  
   
 </script>
   
