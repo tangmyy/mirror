@@ -30,8 +30,8 @@ export default {
 
   computed: {
     ...mapState([
-      'dropFiles']
-    ),
+      'dropFiles'
+    ]),
     localFiles: {
       get() {
         return this.dropFiles;

@@ -75,7 +75,6 @@ export default {
   },
   data() {
     return {
-      activeStep: 0,
       isRounded: true,
       isAnimated: true,
       isStepsClickable: true,
@@ -90,9 +89,6 @@ export default {
       mobileMode: 'minimalist',
     }
   },
-  methods: {
-
-  }
 
 
 }
