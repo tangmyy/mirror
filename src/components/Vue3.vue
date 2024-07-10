@@ -16,25 +16,55 @@
 </template>
 
 <script>
+import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
+
 export default {
+
   data() {
       return {
           gallery: false
       }
   },
+    // computed：定义计算属性(具有缓存性)
+    computed:{
+    // ...mapState([  {}[]
+    ...mapState([
+      'HTTP',
+      'PublicImages',
+    ]),
+
+  },
+  created() {
+    this.fetchPublicImages().then(() => {
+      this.updateImageUrls();
+    });
+  },
   methods: {
-      getImgUrl(value) {
-          value += 50
-          return `https://picsum.photos/id/10${value}/1230/500`
-      },
-      switchGallery(value) {
-          this.gallery = value
-          if (value) {
-              return document.documentElement.classList.add('is-clipped')
-          } else {
-              return document.documentElement.classList.remove('is-clipped')
-          }
+    ...mapMutations({
+      setPublicImages: 'setPublicImages',
+    }),
+    ...mapActions([
+    'fetchPublicImages'
+    ]),
+    updateImageUrls() {
+      this.Image = this.PublicImages.map(image => ({
+        ...image,
+        imageurl: this.HTTP + image.url,
+      }));
+    },
+    
+    getImgUrl(value) {
+      value += 50
+      return `https://picsum.photos/id/10${value}/1230/500`
+    },
+    switchGallery(value) {
+      this.gallery = value
+      if (value) {
+        return document.documentElement.classList.add('is-clipped')
+      } else {
+        return document.documentElement.classList.remove('is-clipped')
       }
+    }
   }
 }
 </script>

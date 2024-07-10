@@ -26,25 +26,19 @@
 
         <router-link class="new" to="/PrivateImage">
           <b-navbar-item>
-            个人空间
+            相册管理
+          </b-navbar-item>
+        </router-link>
+
+        <router-link class="new" to="Vue3">
+          <b-navbar-item>
+            展示空间
           </b-navbar-item>
         </router-link>
 
         <router-link class="new" to="/Image/UPimage">
           <b-navbar-item>
             上传图片
-          </b-navbar-item>
-        </router-link>
-
-        <router-link class="new" to="/VueTwo">
-          <b-navbar-item>
-            VueTwo-布局
-          </b-navbar-item>
-        </router-link>
-
-        <router-link class="new" to="Vue3">
-          <b-navbar-item>
-            Vue3-测试页面
           </b-navbar-item>
         </router-link>
 
@@ -84,8 +78,12 @@
               VueTen-确认删除按钮
             </b-navbar-item>
           </router-link>
+          <router-link class="new" to="/VueTwo">
+          <b-navbar-item>
+            VueTwo-布局
+          </b-navbar-item>
+        </router-link>
         </b-navbar-dropdown>
-    
       </template>
       
       <template #end>

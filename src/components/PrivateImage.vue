@@ -4,7 +4,11 @@
 
     <el-table-column prop="imageurl" label="图片" width="300">
       <template v-slot="scope">
-        <img :src="scope.row.imageurl" alt="image" style="width: 100px; height: auto;" />
+        <KinesisContainer>
+          <KinesisElement :strength="100">
+            <img :src="scope.row.imageurl" alt="image" style="width: 100px; height: auto;" />
+          </KinesisElement>
+        </KinesisContainer>
       </template>
     </el-table-column>
 
@@ -115,12 +119,6 @@ export default {
       this.dialogFormVisible = true; // 显示编辑对话框
     },
 
-    
-    editImage(row) {
-      this.form = { ...row, tags: row.tags ? row.tags.split(';') : [] }; // 复制当前行的数据到表单对象，并将 tags 转换为数组
-      this.dialogFormVisible = true; // 显示编辑对话框
-    },
-
 
     async confirmDelete(id) {
       try {
@@ -137,37 +135,37 @@ export default {
       }
     },
 
-  async submitEdit() {
-    try {
-      const tagsJson = JSON.stringify(this.form.tags);      // 输出即将发送给后端的 tags
-      const parsedTagsJson = JSON.parse(tagsJson);
-      console.log("即将发送给后端的 tags:", parsedTagsJson);
-      console.log("表单数据:", {
-        id: parseInt(this.form.id),
-        description: this.form.description,
-        tags: parsedTagsJson,
-        isPublic: this.form.isPublic,
-      });      
-      const response = await this.$http.put('/images', {
-        id: parseInt(this.form.id), // 确保 id 是整数
-        description: this.form.description,
-        tags: parsedTagsJson,
-        isPublic: this.form.isPublic,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-      });
-      console.log("更新成功:", response.data);
-      this.dialogFormVisible = false; // 关闭编辑对话框
-      // 重新获取数据以更新表格
-      await this.fetchData();
-    } catch (error) {
-      console.error('更新失败:', error);
-      alert('更新失败');
-    }
-  },
+    async submitEdit() {
+      try {
+        const tagsJson = JSON.stringify(this.form.tags);  // 转换 tags 为 JSON 字符串
+        // const parsedTagsJson = JSON.parse(tagsJson);
+        console.log("即将发送给后端的 tags:", tagsJson);
+        console.log("表单数据:", {
+          id: parseInt(this.form.id),
+          description: this.form.description,
+          tags: tagsJson,
+          isPublic: this.form.isPublic,
+        });      
+        const response = await this.$http.put('/images', {
+          id: parseInt(this.form.id), // 确保 id 是整数
+          description: this.form.description,
+          tags: tagsJson,
+          isPublic: this.form.isPublic,
+        }, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          withCredentials: true,
+        });
+        console.log("更新成功:", response.data);
+        this.dialogFormVisible = false; // 关闭编辑对话框
+        // 重新获取数据以更新表格
+        await this.fetchData();
+      } catch (error) {
+        console.error('更新失败:', error);
+        alert('更新失败');
+      }
+    },
     
 
 
