@@ -75,7 +75,9 @@ export default {
   },
   data() {
     return {
-      activeStep: 0,            // 当前活跃的步骤索引
+      isRounded: true,
+      isAnimated: true,
+      isStepsClickable: true,
 
       isRounded: true,          // 步骤标记是否为圆形
       isAnimated: true,         // 导航是否有动画效果
@@ -90,13 +92,6 @@ export default {
       mobileMode: 'minimalist',     // 设置移动设备上的显示模式。可以设置为 'minimalist' 或 'compact'。
     }
   },
-  methods: {
-    // 删除照片  
-    deleteDropFile(index) {
-      this.dropFiles.splice(index, 1);
-    },
-
-  }
 
 
 }

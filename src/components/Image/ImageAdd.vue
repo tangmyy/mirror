@@ -36,8 +36,16 @@ export default {
 
   computed: {
     ...mapState([
-      'dropFiles', // 从 Vuex store 中获取 dropFiles
+      'dropFiles'
     ]),
+    localFiles: {
+      get() {
+        return this.dropFiles;
+      },
+      set(files) {
+        this.updateDropFiles(files);
+      }
+    }
   },
 
   methods: {

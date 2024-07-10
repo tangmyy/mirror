@@ -72,11 +72,27 @@ export default {
       'isPublic', // 图像公开状态
 
       'UserID',
+      'step',
     ]),
   },
 
 
   methods: {
+    ...mapMutations([
+      'updateDropFiles', 
+      'deleteDropFile',
+      'updateDescription', 
+      'updateIsPublic', 
+      'updateTags',
+      'setActiveStep', 
+    ]),
+    // URL.createObjectURL 是一个静态方法，用于创建一个表示给定 File 对象或 Blob 对象的 URL。
+    // 这种 URL 是临时的，并且是浏览器特定的，通常用于预览用户上传的本地文件（例如图片或视频）而无需先将其上传到服务器。
+    generateImageSrc() {
+      if (this.dropFiles.length > 0) {
+        this.imageSrc = URL.createObjectURL(this.dropFiles[0]);
+      }
+    },
 
     async uploadImage() {
       // 检查是否有文件被拖放上传
@@ -104,6 +120,11 @@ export default {
             withCredentials: true,
           });
           alert('上传成功');
+          // 上传成功后清空文件列表
+          setTimeout(() => {
+            this.updateDropFiles([]);
+            this.imageSrc = '';
+          }, 500);
         } catch (error) {
           console.error('网络异常，上传失败', error);
           alert('网络异常，上传失败');
