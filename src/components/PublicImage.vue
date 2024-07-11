@@ -1,83 +1,218 @@
 <template>
-  <div class="Waterfall wf-content">
-    <div class="wf-item" v-for="(image,index) in Image" :key="index">
-      
-      <img alt="" :src="image.imageurl" @load="imageonload">
+  <div class="container">
+    <div style="margin-top: 15px;">
+      <el-input placeholder="搜索关键字" v-model="keyword" class="input-with-select">
+        <el-button slot="append" icon="el-icon-search" @click="searchImages"></el-button>
+      </el-input>
+    </div>
 
-     </div>
+    <div class="tags-container">
+      <el-tag
+        v-for="tag in tags"
+        :key="tag"
+        @click="searchByTag($event, tag)"
+        class="tag-item"
+      >{{ tag }}</el-tag>
+    </div>
+
+    <div v-if="images.length === 0 && !isLoading" class="no-results">
+      没找到
+    </div>
+
+    <div v-if="isLoading">加载中...</div>
+
+    <div v-if="images.length > 0" class="Waterfall wf-content">
+      <div class="wf-item" v-for="(image, index) in images" :key="index">
+        <div class="image-container" @mouseover="showInfo(index)" @mouseleave="hideInfo(index)" @click="openImageModal(image.imageurl)">
+          <KinesisContainer>
+            <KinesisElement :strength="100">
+              <img alt="" :src="image.imageurl" @load="imageonload" />
+            </KinesisElement>
+          </KinesisContainer>
+          <div class="info-box" :class="{ 'show-info': image.showInfo }">
+            <p>{{ image.description }}</p>
+            <div class="tags">
+              <el-tag
+                v-for="tag in image.tags.split(';')"
+                :key="tag"
+                @click="searchByTag($event, tag)"
+                class="tag-item"
+              >{{ tag }}</el-tag>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <el-dialog :visible.sync="imageModalVisible" width="80%" :show-close="false">
+      <img :src="currentImageUrl" alt="Image" class="full-image"/>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
-import { PuBu } from "@/components/JS/PuBu"
+import { mapState, mapActions, mapMutations } from 'vuex';
+import { PuBu } from "@/components/JS/PuBu";
 
 export default {
   name: 'PublicImage',
-
   data() {
     return {
-      Image: [],      
+      keyword: '',
+      images: [],
+      tags: [],
+      isLoading: false,
+      imageModalVisible: false,
+      currentImageUrl: '',
     };
   },
-
-  // computed：定义计算属性(具有缓存性)
-  computed:{
-    // ...mapState([  {}[]
-    ...mapState([
-      'HTTP',
-      'PublicImages',
-    ]),
-
+  computed: {
+    ...mapState(['HTTP', 'PublicImages']),
   },
-
   created() {
     this.fetchPublicImages().then(() => {
       this.updateImageUrls();
     });
+    this.fetchTags();
   },
-
-  methods:{
+  methods: {
+    ...mapActions(['fetchPublicImages']),
     ...mapMutations({
       setPublicImages: 'setPublicImages',
     }),
-    ...mapActions([
-      'fetchPublicImages'
-    ]),
-
     updateImageUrls() {
-      this.Image = this.PublicImages.map(image => ({
+      this.images = this.PublicImages.map(image => ({
         ...image,
         imageurl: this.HTTP + image.url,
+        showInfo: false, // 新增属性用于控制信息框的显示
       }));
     },
-
-    imageonload(){
+    imageonload() {
       new PuBu({
-        el:".wf-content",
-        column:4,
-        gap:20
-      })
+        el: ".wf-content",
+        column: 4,
+        gap: 20,
+      });
     },
-  }
-
-
-}
+    async fetchTags() {
+      try {
+        const response = await this.$http.get('/images/tags');
+        this.tags = Array.isArray(response.data) ? response.data : [];
+      } catch (error) {
+        console.error('获取标签失败:', error);
+      }
+    },
+    async searchImages() {
+      try {
+        this.isLoading = true;
+        const response = await this.$http.get('/images/search', {
+          params: { keyword: this.keyword },
+          withCredentials: true,
+        });
+        console.log("搜索结果:", response.data);
+        this.images = response.data.map(image => ({
+          ...image,
+          imageurl: this.$store.state.HTTP + image.url,
+          showInfo: false, // 新增属性用于控制信息框的显示
+        }));
+        this.isLoading = false;
+        if (this.images.length === 0) {
+          this.$nextTick(() => {
+            const noResults = document.querySelector('.no-results');
+            noResults.classList.add('bounce-in');
+          });
+        }
+      } catch (error) {
+        console.error('搜索失败:', error);
+        this.isLoading = false;
+      }
+    },
+    searchByTag(event, tag) {
+      event.stopPropagation(); // 阻止事件冒泡
+      this.keyword = tag;
+      this.searchImages();
+    },
+    showInfo(index) {
+      this.$set(this.images[index], 'showInfo', true);
+    },
+    hideInfo(index) {
+      this.$set(this.images[index], 'showInfo', false);
+    },
+    openImageModal(imageUrl) {
+      this.currentImageUrl = imageUrl;
+      this.imageModalVisible = true;
+    },
+  },
+};
 </script>
 
 <style scoped>
-  .Waterfall{
-    width:960px;
-    margin:0 auto;
-    position:relative
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+.tags-container {
+  margin: 10px 0;
+}
+.tag-item {
+  cursor: pointer;
+  margin-right: 5px;
+}
+.Waterfall {
+  position: relative;
+}
+.wf-item {
+  position: absolute;
+  border: 5px solid white;
+  box-shadow: -3px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.wf-item img {
+  height: 100%;
+  width: 100%;
+}
+.image-container {
+  position: relative;
+}
+.info-box {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transform: translateX(-10px);
+  opacity: 0;
+  transition: transform 0.2s, opacity 1s;
+}
+.show-info {
+  transform: translateX(0);
+  opacity: 1;
+}
+.no-results {
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 20px;
+  animation: bounce-in 1s ease-out;
+}
+@keyframes bounce-in {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
   }
-  .wf-item{
-    position:absolute;
-    border:5px solid white;
-    box-shadow: -3px 2px 5px rgba(0,0,0,0.5);
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
-  .wf-item img{
-    height:100%;
-    width:100%
-  }
+}
+.full-image {
+  width: 100%;
+  height: auto;
+}
+.el-select .el-input {
+  width: 130px;
+}
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
+}
 </style>

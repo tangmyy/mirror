@@ -1,6 +1,6 @@
 <template>
   <b-carousel :autoplay="true" indicator-custom :indicator-inside="false" :overlay="gallery" @click="switchGallery(true)">
-      <b-carousel-item v-for="(item, i) in 20" :key="i">
+      <b-carousel-item v-for="(item, i) in Image.length" :key="i">
           <a class="image ">
               <img :src="getImgUrl(i)">
           </a>
@@ -16,23 +16,20 @@
 </template>
 
 <script>
-import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 
 export default {
-
   data() {
       return {
-          gallery: false
+          gallery: false,
+          Image: [] // 初始化Image数组
       }
   },
-    // computed：定义计算属性(具有缓存性)
-    computed:{
-    // ...mapState([  {}[]
+  computed: {
     ...mapState([
       'HTTP',
       'PublicImages',
     ]),
-
   },
   created() {
     this.fetchPublicImages().then(() => {
@@ -44,7 +41,7 @@ export default {
       setPublicImages: 'setPublicImages',
     }),
     ...mapActions([
-    'fetchPublicImages'
+      'fetchPublicImages'
     ]),
     updateImageUrls() {
       this.Image = this.PublicImages.map(image => ({
@@ -52,17 +49,15 @@ export default {
         imageurl: this.HTTP + image.url,
       }));
     },
-    
-    getImgUrl(value) {
-      value += 50
-      return `https://picsum.photos/id/10${value}/1230/500`
+    getImgUrl(index) {
+      return this.Image[index].imageurl;
     },
     switchGallery(value) {
-      this.gallery = value
+      this.gallery = value;
       if (value) {
-        return document.documentElement.classList.add('is-clipped')
+        return document.documentElement.classList.add('is-clipped');
       } else {
-        return document.documentElement.classList.remove('is-clipped')
+        return document.documentElement.classList.remove('is-clipped');
       }
     }
   }

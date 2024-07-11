@@ -2,7 +2,7 @@
   <b-carousel :autoplay="true" indicator-custom :indicator-inside="false" :overlay="gallery" @click="switchGallery(true)">
       <b-carousel-item v-for="(item, i) in Image.length" :key="i">
           <a class="image ">
-              <img :src="getImgUrl(i)">
+              <img :src="getImgUrl(i)" >
           </a>
       </b-carousel-item>
       <span v-if="gallery" @click="switchGallery(false)" class="modal-close is-large"/>
