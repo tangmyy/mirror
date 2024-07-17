@@ -14,55 +14,42 @@
     </b-field>
     <div class="tags">
       <span v-for="(file, index) in dropFiles" :key="index" class="tag is-primary">
-        {{file.name}}
+        {{ file.name }}
         <button class="delete is-small" type="button" @click="removeFile(index)"></button>
       </span>
     </div>
   </div>
 </template>
 
-
 <script>
-import { mapState,mapGetters,mapMutations,mapActions } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
-  name: 'ImageAdd',
+  name: "ImageAdd",
 
   computed: {
-    ...mapState([
-      'dropFiles'
-    ]),
+    ...mapState(["dropFiles"]),
     localFiles: {
       get() {
         return this.dropFiles;
       },
       set(files) {
         this.updateDropFiles(files);
-      }
-    }
+      },
+    },
   },
-  
 
   methods: {
-    ...mapMutations([
-      'updateDropFiles', 
-      'deleteDropFile',
-    ]),
+    ...mapMutations(["updateDropFiles", "deleteDropFile"]),
     removeFile(index) {
       this.deleteDropFile(index);
     },
     updateFiles(newFiles) {
       this.updateDropFiles(newFiles);
-    }
-  }
-
-}
-  
+    },
+  },
+};
 </script>
-  
-
-
-  
 
 <style scoped>
 .upload-form {
@@ -71,12 +58,13 @@ export default {
 }
 
 .step-item {
-  margin-right: 400px; /* 设置水平间距 */
+  margin-right: 400px;
+  /* 设置水平间距 */
 }
 
-
 .step-content {
-  margin-left: 400px; /* 设置水平间距 */
+  margin-left: 400px;
+  /* 设置水平间距 */
   margin-top: 150px;
   margin-bottom: 150px;
 }
@@ -84,7 +72,6 @@ export default {
 .little {
   margin-top: 20px;
 }
-
 
 .fixed-navigation {
   position: fixed;
@@ -96,9 +83,13 @@ export default {
 
 .fixed-div {
   position: absolute;
-  bottom: 20px; /* 距离底部20px */
-  right: 20px; /* 距离右侧20px */
-  padding: 10px; /* 内边距 */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  bottom: 20px;
+  /* 距离底部20px */
+  right: 20px;
+  /* 距离右侧20px */
+  padding: 10px;
+  /* 内边距 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* 阴影效果 */
 }
 </style>

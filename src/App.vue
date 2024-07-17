@@ -24,15 +24,15 @@
           </b-navbar-item>
         </router-link>
 
-        <router-link class="new" to="/PrivateImage">
-          <b-navbar-item>
-            相册管理
-          </b-navbar-item>
-        </router-link>
-
         <router-link class="new" to="Vue3">
           <b-navbar-item>
             展示空间
+          </b-navbar-item>
+        </router-link>
+
+        <router-link class="new" to="/PrivateImage">
+          <b-navbar-item>
+            相册管理
           </b-navbar-item>
         </router-link>
 
@@ -42,7 +42,7 @@
           </b-navbar-item>
         </router-link>
 
-        <b-navbar-dropdown label="其他">
+        <!-- <b-navbar-dropdown label="其他">
           <router-link class="new" to="/VueFour">
             <b-navbar-item>
               VueFour-无限滚动
@@ -83,7 +83,7 @@
             VueTwo-布局
           </b-navbar-item>
         </router-link>
-        </b-navbar-dropdown>
+        </b-navbar-dropdown> -->
       </template>
       
       <template #end>

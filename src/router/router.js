@@ -8,16 +8,17 @@ import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import PublicImage from '../components/PublicImage.vue'
 import PrivateImage from '../components/PrivateImage.vue'
-
-import VueTwo from '../components/VueTwo.vue'
 import Vue3 from '../components/Vue3.vue'
-import VueFour from '../components/VueFour.vue'
-import VueFive from '../components/VueFive.vue'
-import VueSix from '../components/VueSix.vue'
-import VueSeven from '../components/VueSeven.vue'
-import VueEight from '../components/VueEight.vue'
-import VueNine from '../components/VueNine.vue'
-import VueTen from '../components/VueTen.vue'
+
+
+// import VueTwo from '../components/VueTwo.vue'
+// import VueFour from '../components/VueFour.vue'
+// import VueFive from '../components/VueFive.vue'
+// import VueSix from '../components/VueSix.vue'
+// import VueSeven from '../components/VueSeven.vue'
+// import VueEight from '../components/VueEight.vue'
+// import VueNine from '../components/VueNine.vue'
+// import VueTen from '../components/VueTen.vue'
 
 import UPimage from '../components/Image/UPimage.vue'
 
@@ -66,43 +67,42 @@ const router = new VueRouter({
         meta: { requiresAuth: true }
       },
 
-      { path:'/VueTwo', 
-        name: 'VueTwo',
-        component: VueTwo, 
-      },
       { path:'/Vue3', 
         name: 'Vue3',
         component: Vue3, 
       },
-      { path:'/VueFour', 
-        name: 'VueFour',
-        component: VueFour 
-      },
-      { path:'/VueFive', 
-        name: 'VueFive',
-        component: VueFive 
-      },
-      { path:'/VueSix', 
-        name: 'VueSix',
-        component: VueSix 
-      },
-      { path:'/VueSeven', 
-        name: 'VueSeven',
-        component: VueSeven 
-      },
-      { path:'/VueEight', 
-        name: 'VueEight',
-        component: VueEight 
-      },
-      { path:'/VueNine', 
-        name: 'VueNine',
-        component: VueNine 
-      },
-      { path:'/VueTen', 
-        name: 'VueTen',
-        component: VueTen 
-      },
-
+      // { path:'/VueTwo', 
+      //   name: 'VueTwo',
+      //   component: VueTwo, 
+      // },
+      // { path:'/VueFour', 
+      //   name: 'VueFour',
+      //   component: VueFour 
+      // },
+      // { path:'/VueFive', 
+      //   name: 'VueFive',
+      //   component: VueFive 
+      // },
+      // { path:'/VueSix', 
+      //   name: 'VueSix',
+      //   component: VueSix 
+      // },
+      // { path:'/VueSeven', 
+      //   name: 'VueSeven',
+      //   component: VueSeven 
+      // },
+      // { path:'/VueEight', 
+      //   name: 'VueEight',
+      //   component: VueEight 
+      // },
+      // { path:'/VueNine', 
+      //   name: 'VueNine',
+      //   component: VueNine 
+      // },
+      // { path:'/VueTen', 
+      //   name: 'VueTen',
+      //   component: VueTen 
+      // },
   ]
 })
 
