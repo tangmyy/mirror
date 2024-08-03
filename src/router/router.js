@@ -8,7 +8,9 @@ import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import PublicImage from '../components/PublicImage.vue'
 import PrivateImage from '../components/PrivateImage.vue'
-import Vue3 from '../components/Vue3.vue'
+import ZhanShi from '../components/ZhanShi.vue'
+import BigModel from '../components/BigModel.vue'
+import test from '../components/test.vue'
 
 
 // import VueTwo from '../components/VueTwo.vue'
@@ -66,11 +68,19 @@ const router = new VueRouter({
         component: UPimage, 
         meta: { requiresAuth: true }
       },
-
-      { path:'/Vue3', 
-        name: 'Vue3',
-        component: Vue3, 
+      { path:'/ZhanShi', 
+        name: 'ZhanShi',
+        component: ZhanShi, 
       },
+      { path:'/BigModel', 
+        name: 'BigModel',
+        component: BigModel, 
+      },
+      { path:'/test', 
+        name: 'test',
+        component: test, 
+      },
+
       // { path:'/VueTwo', 
       //   name: 'VueTwo',
       //   component: VueTwo, 

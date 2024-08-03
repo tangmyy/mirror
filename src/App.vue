@@ -5,42 +5,35 @@
       <template #brand>
         <!-- src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png" -->
         <b-navbar-item tag="router-link" :to="{ path: '/PublicImage' }">
-          <img
-          src="@/assets/MirrorLogo.png"
-          alt="图片被臭冥冥吃了"
-          >
+          <img src="@/assets/MirrorLogo.png" alt="图片被臭冥冥吃了" />
         </b-navbar-item>
       </template>
       <template #start>
         <router-link class="new" to="/Home">
-          <b-navbar-item>
-            首页
-          </b-navbar-item>
+          <b-navbar-item> 首页 </b-navbar-item>
         </router-link>
 
         <router-link class="new" to="/PublicImage">
-          <b-navbar-item>
-            公共相册
-          </b-navbar-item>
-        </router-link>
-
-        <router-link class="new" to="Vue3">
-          <b-navbar-item>
-            展示空间
-          </b-navbar-item>
+          <b-navbar-item> 公共相册 </b-navbar-item>
         </router-link>
 
         <router-link class="new" to="/PrivateImage">
-          <b-navbar-item>
-            相册管理
-          </b-navbar-item>
+          <b-navbar-item> 个人相册 </b-navbar-item>
         </router-link>
 
         <router-link class="new" to="/Image/UPimage">
-          <b-navbar-item>
-            上传图片
-          </b-navbar-item>
+          <b-navbar-item> 上传图片 </b-navbar-item>
         </router-link>
+
+        <router-link class="new" to="ZhanShi">
+          <b-navbar-item> 展示空间 </b-navbar-item>
+        </router-link>
+
+        <b-navbar-dropdown label="其他">
+          <router-link class="new" to="/BigModel">
+            <b-navbar-item> 星火认知大模型 </b-navbar-item>
+          </router-link>
+        </b-navbar-dropdown>
 
         <!-- <b-navbar-dropdown label="其他">
           <router-link class="new" to="/VueFour">
@@ -85,7 +78,7 @@
         </router-link>
         </b-navbar-dropdown> -->
       </template>
-      
+
       <template #end>
         <b-navbar-item tag="div">
           <div class="buttons">
@@ -104,80 +97,63 @@
               <el-button type="success" plain>{{ UserID }}：欢迎您！👏</el-button>
               <el-button type="warning" @click="APPlogout" plain>退出登录</el-button>
             </div>
-
           </div>
         </b-navbar-item>
       </template>
-
-    </b-navbar>  
+    </b-navbar>
 
     <!-- 中间内容 -->
     <template>
       <div id="app">
-        <router-view></router-view>    
+        <router-view></router-view>
       </div>
     </template>
-
   </div>
 </template>
 
-
 <script>
 // import { Mock } from '../mock/mock';
-import { mapState, mapMutations } from 'vuex';
-import Home from './components/Home.vue';
-
-
+import { mapState, mapMutations } from "vuex";
+import Home from "./components/Home.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   // 挂载组件
-  components: {   
+  components: {
     Home,
   },
   // 2. methods：定义组件的方法。
   methods: {
-    ...mapMutations([
-      'login',
-      'logout',
-    ]),
+    ...mapMutations(["login", "logout"]),
     APPlogout() {
       this.logout(); // 调用 Vuex 的 logout 突变
       // 删除所有 cookies
-      document.cookie.split(";")
-      .forEach((cookie) => {
+      document.cookie.split(";").forEach((cookie) => {
         document.cookie = cookie
-          .replace(/^ +/, "")// 匹配字符串开头的一个或多个空格,并将其替换为空字符串,确保后续操作的正确性。
+          .replace(/^ +/, "") // 匹配字符串开头的一个或多个空格,并将其替换为空字符串,确保后续操作的正确性。
           .replace(/=.*/, "=;expires=" + new Date(0).toUTCString() + ";path=/");
-          // 匹配等号及其后面的所有字符，并将其替换为 =;expires= + UTC 时间 + ;path=/。
+        // 匹配等号及其后面的所有字符，并将其替换为 =;expires= + UTC 时间 + ;path=/。
       });
 
       // 跳转到登录页
-      this.$router.push({ path: '/Login' });
+      this.$router.push({ path: "/Login" });
     },
   },
 
   // 3. computed：定义计算属性(具有缓存性)
   computed: {
-    ...mapState([
-      'isLoggedIn',
-      'UserID',
-    ])
+    ...mapState(["isLoggedIn", "UserID"]),
   },
-
-
-}
+};
 </script>
-
-
 
 <style lang="scss" scoped>
 .b-tooltips {
   .b-tooltip:not(:last-child) {
-      margin-right: .5em
+    margin-right: 0.5em;
   }
   .b-tooltip {
-      margin-bottom: .5em
+    margin-bottom: 0.5em;
   }
 }
 
@@ -212,5 +188,4 @@ export default {
   align-items: center; /* 垂直居中 */
   justify-content: center; /* 水平居中，可选 */
 }
-
-</style> 
+</style>
