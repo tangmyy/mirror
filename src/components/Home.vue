@@ -6,14 +6,6 @@
       </KinesisElement>
     </KinesisContainer>
 
-    <!-- 问答交互 -->
-    <h1>Ask the Big Model</h1>
-    <input type="text" v-model="question" placeholder="Ask your question here" />
-    <button @click="askQuestion">Ask</button>
-    <p>
-      Answer: <span>{{ answer }}</span>
-    </p>
-
     <!-- 页码导航栏 -->
     <hr />
     <section>
@@ -50,9 +42,6 @@ export default {
 
   data() {
     return {
-      // 大模型
-      question: "",
-      answer: "", // 用于存储实时显示的回答
       // 页码导航栏
       total: 200, // 总记录数
       current: 1, // 当前页数
@@ -85,40 +74,6 @@ export default {
       adddd: "add", // 将 `this.add()` 映射为 `this.$store.commit('increment')`
       abbbb: "abb",
     }),
-
-    async askQuestion() {
-      this.answer = ""; // 清空之前的回答
-      try {
-        const response = await this.$http.post(
-          "/bigmodel/ask",
-          {
-            question: this.question,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          },
-        );
-        console.log("问答成功:", response.data);
-        this.displayAnswer(response.data.answer);
-      } catch (error) {
-        console.error("问答失败:", error);
-        this.answer = "Error: " + error.message;
-      }
-    },
-    displayAnswer(answer) {
-      let index = 0;
-      const interval = setInterval(() => {
-        if (index < answer.length) {
-          this.answer += answer[index];
-          index++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 100); // 每100毫秒显示一个字，可以根据需要调整时间间隔
-    },
   },
 };
 </script>
