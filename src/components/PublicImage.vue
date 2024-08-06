@@ -22,11 +22,7 @@
           @mouseleave="hideInfo(index)"
           @click="openImageModal(image.imageurl)"
         >
-          <KinesisContainer>
-            <KinesisElement :strength="100">
-              <img alt="" :src="image.imageurl" @load="imageonload" />
-            </KinesisElement>
-          </KinesisContainer>
+          <img alt="" :src="image.imageurl" @load="imageonload" />
           <div class="info-box" :class="{ 'show-info': image.showInfo }">
             <p>{{ image.description }}</p>
             <div class="tags">
