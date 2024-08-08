@@ -34,49 +34,6 @@
             <b-navbar-item> 星火认知大模型 </b-navbar-item>
           </router-link>
         </b-navbar-dropdown>
-
-        <!-- <b-navbar-dropdown label="其他">
-          <router-link class="new" to="/VueFour">
-            <b-navbar-item>
-              VueFour-无限滚动
-            </b-navbar-item>
-          </router-link>
-          <router-link class="new" to="/VueFive">
-            <b-navbar-item>
-              VueFive-加载中...
-            </b-navbar-item>
-          </router-link>
-          <router-link class="new" to="/VueSix">
-            <b-navbar-item>
-              VueSix-大图滚动
-            </b-navbar-item>
-          </router-link>
-          <router-link class="new" to="/VueSeven">
-            <b-navbar-item>
-              VueSeven-图片出差了...
-            </b-navbar-item>
-          </router-link>
-          <router-link class="new" to="/VueEight">
-            <b-navbar-item>
-              VueEight-无敌相册
-            </b-navbar-item>
-          </router-link>
-          <router-link class="new" to="/VueNine">
-            <b-navbar-item>
-              VueNine-标签
-            </b-navbar-item>
-          </router-link>
-          <router-link class="new" to="/VueTen">
-            <b-navbar-item>
-              VueTen-确认删除按钮
-            </b-navbar-item>
-          </router-link>
-          <router-link class="new" to="/VueTwo">
-          <b-navbar-item>
-            VueTwo-布局
-          </b-navbar-item>
-        </router-link>
-        </b-navbar-dropdown> -->
       </template>
 
       <template #end>
