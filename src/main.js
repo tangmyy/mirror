@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/router'
 import store from './store/store'
+// import './mock/mock'
 
 // 文件名为index才可以不写 如果文件名是其他的则必须写
 import axios from 'axios'
