@@ -1,4 +1,4 @@
-# mirror(Vue2 +router +vuex +mock ++SpringBoot)(前后端分离)
+# mirror(Vue2 +router +vuex +axios +mock ++SpringBoot)(前后端分离)
 # 前端项目在主页 Mirror_realm
 ---
  **组件**
